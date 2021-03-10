@@ -68,6 +68,6 @@ class Meta_Box_Entity {
 	 * Defined args
 	 * @var array<string, mixed>
 	 */
-	public $args;
+	public $args = array();
 
 }
