@@ -176,7 +176,10 @@ Allows for the passing of a filter to extract meta boxes based on any criteria.
  * @param \WP_Post $post
  * @return void
  */
-public function render_meta_box( Meta_Box_Entity $meta_box, \WP_Post $post ): void {...}
+public function render_meta_box( 
+    Meta_Box_Entity $meta_box, 
+    \WP_Post $post 
+): void {...}
 ```
 Renders (and prints) a defined meta box (from its isntance) and based on a post. This allows for the mocking of post types (and meta/terms), for checking views are rendered as expected.
 
