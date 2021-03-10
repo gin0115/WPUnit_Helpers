@@ -11,7 +11,7 @@ $box = (new WP_Meta_Box)
 
 $this->assertInstanceOf(Meta_Box_Entity::class, $box);
 ```
-**[Show Docs](../docs/WP_Meta_Box.md)**
+**[Show Docs](docs/WP_Meta_Box.md)**
 
 ## WP Dependencies
 
