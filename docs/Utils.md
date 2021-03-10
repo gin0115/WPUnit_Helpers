@@ -50,3 +50,9 @@ $mapped = Utils::array_map_with(
 );
 ```
 
+> The static parameters are not required, so this can be used as an array_map which gives access to both key and value.
+
+```php 
+Utils::array_map_with( function($key, $value){...}, $array );
+```
+

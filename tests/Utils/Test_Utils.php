@@ -70,4 +70,27 @@ class Test_Utils extends TestCase {
 		$this->assertEquals( "key2 -> value2 | {$static1} | {$static2}", $result[1] );
 		$this->assertEquals( "key3 -> value3 | {$static1} | {$static2}", $result[2] );
 	}
+
+	/** @testdox Can map without any statics, just give key & value in callback. */
+    public function test_map_with_no_static_properties()
+    {
+        $gernator = function(): Generator {
+			yield 'key1' => 'value1';
+			yield 'key2' => 'value2';
+			yield 'key3' => 'value3';
+		};
+		
+
+		$result = Utils::array_map_with(
+			function( $key, $value ): string {
+				return \sprintf( '%s -> %s ', $key, $value );
+			},
+			$gernator()
+		);
+
+		$this->assertCount( 3, $result );
+		$this->assertEquals( "key1 -> value1 ", $result[0] );
+		$this->assertEquals( "key2 -> value2 ", $result[1] );
+		$this->assertEquals( "key3 -> value3 ", $result[2] );
+    }
 }
