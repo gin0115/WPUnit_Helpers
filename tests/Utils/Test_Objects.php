@@ -10,7 +10,7 @@ declare(strict_types=1);
  * @package Gin0115/WPUnit_Helpers
  */
 
-namespace Gin0115\WPUnit_Helpers\Objects;
+namespace Gin0115\WPUnit_Helpers\Utils;
 
 use PHPUnit\Framework\TestCase;
 use Gin0115\WPUnit_Helpers\Objects;
