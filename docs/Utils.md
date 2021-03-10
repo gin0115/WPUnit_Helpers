@@ -4,7 +4,7 @@ A collection of assorted functions which do not really have a single place to li
 
 > All methods in this helper class are self contained and called in via static methods.
 
-## array_map_with 
+## array_map_with()
 
 ```php
 /**
