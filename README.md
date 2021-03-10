@@ -36,5 +36,19 @@ Objects::invoke_method($instance, 'method', ['the', 'args']);
 **[Read More](docs/Objects.md)**
 
 ## Utils 
+A collection of functions that have no other real place.
+```php 
+// array_map_with allows array_map to be done with access to the key and as many other
+// values you wish to pass.
+$result = Utils::array_map_with( 
+    function($key, $value, $spacer){
+        return $key . ' - ' . $value;
+    }, 
+    ['key1'=>'value1', 'key2' => 'value2'],
+    ' -|- '
+);
+var_dump($result); // ['key1 -|- value1', 'key2 -|- value2']
+```
+**[Read More](docs/Utils.md)**
 
 ## Output
