@@ -4,7 +4,7 @@ A collection of assorted functions which do not really have a single place to li
 
 > All methods in this helper class are self contained and called in via static methods.
 
-## Methods 
+## array_map_with 
 
 ```php
 /**
@@ -37,7 +37,6 @@ $mapped = Utils::array_map_with(
 );
 
 // Can also be used with a generator.
-
 $generator = function(): Generator {
     yield 'user_12342' => 'Matt Smith';
     yield 'user_23423' => 'Sally Jones';
