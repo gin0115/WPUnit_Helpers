@@ -6,7 +6,7 @@ A helper class for use with WordPress site dependencies such as themes, plugins 
 
 Sometimes you need to plugins installed in your test environment. This class has a few helper methods for downloading and installing plugins. 
 
-### From Remove .zip
+### From Remote .zip
 
 This method allows you to pass just the URL to a plugin, either WordPress plugin directory, git or any other publically accessible url.
 
@@ -34,7 +34,16 @@ tests_add_filter(
 	}
 
     // Once installed, its just a case of activating and runing any setup needed.
-    require_once  TEST_WP_ROOT . '/wp-content/plugins/achme_plugin/plugin.php';
+    WP_Dependencies::activate_plugin('/achme_plugin/plugin.php');
     add_option('ache_setting', 1);
     add_option('ache_setting_2', 'disabled');
 );
+```
+### Activate Plugins
+
+You can easily activate any installed plugins, this follows the same workflow as core WP, so all activation hooks should be called on set.
+
+```php 
+    WP_Dependencies::activate_plugin('/achme_plugin/plugin.php');
+```
+As with the above example (*From Remote .zip*), this is best done in the **tests_add_filter** callback.
