@@ -42,7 +42,7 @@ A collection of functions that have no other real place.
 // values you wish to pass.
 $result = Utils::array_map_with( 
     function($key, $value, $spacer){
-        return $key . ' - ' . $value;
+        return $key . $spacer . $value;
     }, 
     ['key1'=>'value1', 'key2' => 'value2'],
     ' -|- '
