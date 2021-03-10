@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Helper class for testing Metaboxes.
+ * Helper class for testing meta boxes.
  * Allows for the verifcation and invoking of meta_boxes.
  *
  * @author Glynn Quelch <glynn.quelch@gmail.com>
@@ -14,17 +14,17 @@ declare( strict_types=1 );
 namespace Gin0115\WPUnit_Helpers\WP;
 
 use Gin0115\WPUnit_Helpers\Utils;
-use Gin0115\WPUnit_Helpers\WP\Entities\Metabox_Entity;
+use Gin0115\WPUnit_Helpers\WP\Entities\Meta_Box_Entity;
 use PinkCrab\FunctionConstructors\Arrays as Arr;
 use PinkCrab\FunctionConstructors\Comparisons as C;
 use PinkCrab\FunctionConstructors\GeneralFunctions as F;
 
-class WP_Metabox {
+class WP_Meta_Box {
 
 	/**
 	 * Internal Collection of meta_boxes
 	 *
-	 * @var array<Metabox_Entity>
+	 * @var array<Meta_Box_Entity>
 	 */
 	public $meta_boxes = array();
 
@@ -42,26 +42,28 @@ class WP_Metabox {
 	/**
 	 * Registers meta_boxes, if they have not already been set.
 	 *
-	 * @return void
+	 * @return self
 	 */
-	public function maybe_register(): void {
+	public function maybe_register(): self {
 		if ( $this->from_global() === null ) {
 			\do_action( 'add_meta_boxes' );
 		}
+		return $this;
 	}
 
 	/**
 	 * Starts the mapping process.
 	 *
-	 * @return void
+	 * @return self
 	 */
-	public function set_meta_boxes(): void {
+	public function set_meta_boxes(): self {
 		foreach ( $this->from_global() ?? array() as $post_type => $meta_boxes ) {
 			$this->meta_boxes = array_merge(
 				$this->meta_boxes,
 				$this->map_position( $post_type, $meta_boxes )
 			);
 		}
+		return $this;
 	}
 
 	/**
@@ -69,7 +71,7 @@ class WP_Metabox {
 	 *
 	 * @param string $post_type
 	 * @param array<string, array> $meta_boxes
-	 * @return array<Metabox_Entity>
+	 * @return array<Meta_Box_Entity>
 	 */
 	protected function map_position( string $post_type, array $meta_boxes ): array {
 		$results = array();
@@ -88,7 +90,7 @@ class WP_Metabox {
 	 * @param string $post_type
 	 * @param string $position
 	 * @param array<string, array> $meta_boxes
-	 * @return array<Metabox_Entity>
+	 * @return array<Meta_Box_Entity>
 	 */
 	protected function map_priority( string $post_type, string $position, array $meta_boxes ): array {
 		$results = array();
@@ -108,7 +110,7 @@ class WP_Metabox {
 	 * @param string $position
 	 * @param string $priority
 	 * @param array<string, array|null> $meta_boxes
-	 * @return array<Metabox_Entity>
+	 * @return array<Meta_Box_Entity>
 	 */
 	protected function map_named_meta_boxes(
 		array $meta_boxes,
@@ -117,8 +119,8 @@ class WP_Metabox {
 		string $priority
 	): array {
 		return Utils::array_map_with(
-			function( $name, $meta_box_details, $post_type, $position, $priority ): Metabox_Entity {
-				$meta_box            = new Metabox_Entity();
+			function( $name, $meta_box_details, $post_type, $position, $priority ): Meta_Box_Entity {
+				$meta_box            = new Meta_Box_Entity();
 				$meta_box->post_type = $post_type;
 				$meta_box->position  = $position;
 				$meta_box->priority  = $priority;
@@ -144,7 +146,7 @@ class WP_Metabox {
 	 * Returns all meta_boxes for a multiple post types.
 	 *
 	 * @param string ...$post_type
-	 * @return array<Metabox_Entity>
+	 * @return array<Meta_Box_Entity>
 	 */
 	public function for_post_types( string ...$post_type ): array {
 		return array_filter(
@@ -158,9 +160,9 @@ class WP_Metabox {
 	 * Returns first instance found.
 	 *
 	 * @param string $id
-	 * @return Metabox_Entity|null
+	 * @return Meta_Box_Entity|null
 	 */
-	public function find( string $id ): ?Metabox_Entity {
+	public function find( string $id ): ?Meta_Box_Entity {
 		return Arr\filterFirst( F\propertyEquals( 'id', $id ) )( $this->meta_boxes );
 	}
 
@@ -168,7 +170,7 @@ class WP_Metabox {
 	 * Allows the filtering of meta boxes.
 	 *
 	 * @param callable $filter
-	 * @return array<Metabox_Entity>
+	 * @return array<Meta_Box_Entity>
 	 */
 	public function filter( callable $filter ): array {
 		return array_filter( $this->meta_boxes, $filter );
@@ -178,13 +180,13 @@ class WP_Metabox {
 	 * Renders a meta_box based on a post type passed.
 	 * Prints the contents!
 	 *
-	 * @param Metabox_Entity $meta_box
+	 * @param Meta_Box_Entity $meta_box
 	 * @param \WP_Post $post
 	 * @return void
 	 */
-	public function render_meta_box( Metabox_Entity $meta_box, \WP_Post $post ): void {
-		$args = Arr\pushHead( $meta_box->args )( $post );
-		\call_user_func( $meta_box->callback, ...$args );
+	public function render_meta_box( Meta_Box_Entity $meta_box, \WP_Post $post ): void {
+		$callback = $meta_box->callback;
+		$callback( $post, $meta_box->args );
 	}
 
 }
