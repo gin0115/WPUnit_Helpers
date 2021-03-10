@@ -17,21 +17,21 @@ define( 'TEST_WP_ROOT', $wp_install_path );
 
 // Inside your wpunit bootstrap file.
 tests_add_filter(
-	'muplugins_loaded',
-	function() {
+    'muplugins_loaded',
+    function() {
         // Attempt to download the plugin. Throws exceptions if fails, so wrap in a try/catch.
-        try {
-			WP_Dependencies::install_remote_plugin_from_zip(
-                'https://some.url/file.zip', 
-                TEST_WP_ROOT
-            );
-		} catch (\Throwable $th) {
-			print "Failed to install plugin";
-            print $th->getMessage();
-            print "Cancelling setup";
-            exit;
-		}
-	}
+            try {
+                WP_Dependencies::install_remote_plugin_from_zip(
+                    'https://some.url/file.zip', 
+                    TEST_WP_ROOT
+                );
+            } catch (\Throwable $th) {
+                print "Failed to install plugin";
+                print $th->getMessage();
+                print "Cancelling setup";
+                exit;
+	   }
+        }
 
     // Once installed, its just a case of activating and runing any setup needed.
     WP_Dependencies::activate_plugin('/achme_plugin/plugin.php');
@@ -44,6 +44,6 @@ tests_add_filter(
 You can easily activate any installed plugins, this follows the same workflow as core WP, so all activation hooks should be called on set.
 
 ```php 
-    WP_Dependencies::activate_plugin('/achme_plugin/plugin.php');
+  WP_Dependencies::activate_plugin('/achme_plugin/plugin.php');
 ```
 As with the above example (*From Remote .zip*), this is best done in the **tests_add_filter** callback.
