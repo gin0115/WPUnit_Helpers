@@ -73,16 +73,15 @@ if( ! is_null( $found ) ){
 }
 
 // This will then render the meta box. You can either use 
-
 $this->assertOutputString('Find'); 
 
 // Or the Output::buffer() method included in this library.
-
 $output = Output::buffer(
     function() use ($meta_box, $mock_post, $found) : void{
         $meta_box->render_meta_box($found, $mock_post);
     }
 ); 
+
 $this->assertStringContainsString('Find', $output);
 $this->assertStringContainsString('more', $output);
 
