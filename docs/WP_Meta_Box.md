@@ -39,25 +39,24 @@ var_dump($found); // Array of Meta_Box_Entity matching post types.
 You can pass a function to be used to run array_filter on the internal set of meta boxes. This allows you to find more specific meta boxes based on as many values as you need. Returns an array of matching **Meta_Box_Entity**
 
 ``` php
-
 $found = $meta_box->filter(
     function(Meta_Box_Entity $box): bool{
-        return $box->post_type === 'my_cpt' && $box->postition === 'side';    
+        return $box->post_type === 'my_cpt' 
+            && $box->postition === 'side';    
     }
 ); 
 var_dump($found); // Array of all matching Meta_Box_Entity objects.
 ```
 
-### Included as a dependency to this library (and used in its source) is the PinkCrab FunctionConstructors libray, which has many helpful functions to help with is.
-
+_Included as a dependency to this library (and used in its source) is the PinkCrab FunctionConstructors libray, which has many helpful functions to help with is._
 ``` php
-
 use PinkCrab\FunctionConstructors\Comparisons as C; // Use whatever alias you wish, these are my preference
 use PinkCrab\FunctionConstructors\GeneralFunctions as F; 
 
-$found = $meta_box->filter(
-    C\all( F\propertyEquals( 'post_type', 'my_cpt' ), F\propertyEquals( 'postition', 'side' ) )
-); 
+$found = $meta_box->filter( C\all( // All must be true
+    F\propertyEquals( 'post_type', 'my_cpt' ), // Get the property and does a strict check
+    F\propertyEquals( 'postition', 'side' )
+)); 
 ```
 
 ## Render
