@@ -181,6 +181,71 @@ public function render_meta_box( Meta_Box_Entity $meta_box, \WP_Post $post ): vo
 ```
 Renders (and prints) a defined meta box (from its isntance) and based on a post. This allows for the mocking of post types (and meta/terms), for checking views are rendered as expected.
 
+## Gin0115\WPUnit_Helpers\WP\Entities\Meta_Box_Entity
 
+### Properties
+```php 
+/**
+ * All post types this meta box is applied to.
+ * @var string
+ */
+public $post_type;
+
+/**
+ * Position/Context (Side|Normal)
+ * @var string
+ */
+public $position;
+
+/**
+ * Display priority for sorting.
+ * @var string
+ */
+public $priority;
+
+/**
+ * Internal WP reference, used as the key in global meta box array.
+ * Should not be used to check compare with a defined meta box key, use $id
+ * @var string
+ */
+public $name;
+
+/**
+ * Has the callback been registered yet.
+ * Represents false for meta box details in WP_Meta_Box global
+ * @var bool
+ */
+public $isset = false;
+
+/**
+ * Defined meta box id/key, used when registering.
+ * @var string
+ */
+public $id;
+
+/**
+ * meta box title
+ * @var string
+ */
+public $title;
+
+/**
+ * Defined callback
+ * @var callable
+ */
+public $callback;
+
+/**
+ * Defined args
+ * @var array<string, mixed>
+ */
+public $args = array();
+```
+> Please note as the callback is held as a property, you will need to extract this before trying to call. 
+
+```php 
+$callback = $meta_box->callback; 
+$callback( $post, $meta_box->args ); 
+```
 
 
