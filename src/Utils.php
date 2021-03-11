@@ -45,12 +45,6 @@ class Utils {
 		if ( is_dir( $dir ) ) {
 			$contents = scandir( $dir );
 
-			// If empty dir, just dlete and return.
-			if ( $contents === false ) {
-				rmdir( $dir );
-				return;
-			}
-
 			// Loop through contents.
 			foreach ( $contents as $object ) {
 				if ( $object !== '.' && $object !== '..' ) {

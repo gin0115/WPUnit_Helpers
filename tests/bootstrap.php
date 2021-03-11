@@ -14,6 +14,7 @@ require_once getenv( 'WP_PHPUNIT__DIR' ) . '/includes/functions.php';
 
 // Set the fixtures path as a const.
 define( 'TEST_FIXTURES_PATH', __DIR__ . '/Fixtures/' );
+define( 'TEST_WP_INSTANCE_PATH', dirname( __DIR__, 1 ) . '/wordpress' );
 
 tests_add_filter(
 	'muplugins_loaded',
@@ -21,7 +22,7 @@ tests_add_filter(
 		// Download WooCommerce (For all WC traits and factories)
 		WP_Dependencies::install_remote_plugin_from_zip(
 			'https://downloads.wordpress.org/plugin/woocommerce.4.9.2.zip',
-			dirname( __DIR__, 1 ) . '/wordpress'
+			TEST_WP_INSTANCE_PATH
 		);
 		WP_Dependencies::activate_plugin( 'woocommerce/woocommerce.php' );
 	}

@@ -41,7 +41,7 @@ class Meta_Box_Entity {
 
 	/**
 	 * Has the callback been registered yet.
-	 * Represents false for meta box details in WP_Meta_Box global
+	 * Represents false for meta box details in Meta_Box_Inspector global
 	 * @var bool
 	 */
 	public $isset = false;

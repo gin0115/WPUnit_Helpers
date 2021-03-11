@@ -19,7 +19,7 @@ use PinkCrab\FunctionConstructors\Arrays as Arr;
 use PinkCrab\FunctionConstructors\Comparisons as C;
 use PinkCrab\FunctionConstructors\GeneralFunctions as F;
 
-class WP_Meta_Box {
+class Meta_Box_Inspector {
 
 	/**
 	 * Internal Collection of meta_boxes
@@ -27,6 +27,17 @@ class WP_Meta_Box {
 	 * @var array<Meta_Box_Entity>
 	 */
 	public $meta_boxes = array();
+
+	/**
+	 * Self contained, initliaser
+	 *
+	 * @return Meta_Box_Inspector
+	 */
+	public static function initialise(): Meta_Box_Inspector {
+		$instance = new self();
+		$instance->maybe_register()->set_meta_boxes();
+		return $instance;
+	}
 
 	/**
 	 * Returns all the current meta_boxes, or null if not set.

@@ -1,22 +1,39 @@
-# WP_Meta_Box
+# Meta_Box_Inspector
 
-Working with the $wp_meta_box global can be fun at times, meta boxes are deeply nested in a multidimensional array of or arrays. Finding if your metabox has been registered to a post type and its details, is painful. Especially in intergration style tests.
+Working with the $Meta_Box_Inspector global can be fun at times, meta boxes are deeply nested in a multidimensional array of or arrays. Finding if your metabox has been registered to a post type and its details, is painful. Especially in intergration style tests.
 
-The WP_Meta_Box class will map all registered meta boxes to a **Meta_Box_Entity** object, where all values can be recalled and tested against. You can even render the view of a meta box from any WP_Post instance.
+The Meta_Box_Inspector class will map all registered meta boxes to a **Meta_Box_Entity** object, where all values can be recalled and tested against. You can even render the view of a meta box from any WP_Post instance.
 
 ## Setup
 
 ``` php
-$meta_boxes = new WP_Meta_Box;
+$inspector = new Meta_Box_Inspector;
 ```
 
 Once you created an instance, you will need to populate the internal $wp_meta_boxes global and map them into a more workable format.
 
 ```php 
-$meta_box->maybe_register()->set_meta_boxes(); 
+$inspector->maybe_register()->set_meta_boxes(); 
 ``` 
 
 ```maybe_register()``` will only run ```do_action('add_meta_boxes')``` if the global value is empty (prevents adding the same meta boxes multiple times).
+
+## Static Construction
+
+To make the setup process a little more user friendly, we have added a simple static initialiser. This allow you to do all as one liner. 
+```php
+$inspector = Meta_Box_Inspector::initialise();
+// Same as 
+$inspector = new Meta_Box_Inspector();
+$inspector->maybe_register()->set_meta_boxes(); 
+```
+You can even one liner it as part of your tests
+```php
+$this->assertEqual(
+    'My Metabox', 
+    Meta_Box_Inspector::initialise()->find('my_key')->title
+);
+```
 
 ## Find by ID or Post Type
 
@@ -24,11 +41,11 @@ You can easily search all of your meta boxes by either the ID or by a single (or
 
 ```php 
 // Find based on key/id
-$found = $meta_box->find('my_meta_box_by_id');
+$found = $inspector->find('my_meta_box_by_id');
 var_dump($found); // Either instance of Meta_Box_Entity or null if not found.
 
 // Find all based on post type
-$found = $meta_box->for_post_types('post', 'page', 'my_cpt');
+$found = $inspector->for_post_types('post', 'page', 'my_cpt');
 var_dump($found); // Array of Meta_Box_Entity matching post types.
 ```
 
@@ -39,7 +56,7 @@ var_dump($found); // Array of Meta_Box_Entity matching post types.
 You can pass a function to be used to run array_filter on the internal set of meta boxes. This allows you to find more specific meta boxes based on as many values as you need. Returns an array of matching **Meta_Box_Entity**
 
 ``` php
-$found = $meta_box->filter(
+$found = $inspector->filter(
     function(Meta_Box_Entity $box): bool{
         return $box->post_type === 'my_cpt' 
             && $box->postition === 'side';    
@@ -53,7 +70,7 @@ _Included as a dependency to this library (and used in its source) is the PinkCr
 use PinkCrab\FunctionConstructors\Comparisons as C; // Use whatever alias you wish, these are my preference
 use PinkCrab\FunctionConstructors\GeneralFunctions as F; 
 
-$found = $meta_box->filter( C\all( // All must be true
+$found = $inspector->filter( C\all( // All must be true
     F\propertyEquals( 'post_type', 'my_cpt' ), // Get the property and does a strict check
     F\propertyEquals( 'postition', 'side' )
 )); 
@@ -65,11 +82,11 @@ If you ever need to test you template or any logic around setting/getting meta d
 
 ```php
 $mock_post = \get_post( $this->factory->post->create( /* Pass any values to create with here */ ); 
-$found = $meta_box->find('my_meta_box_by_id'); 
+$found = $inspector->find('my_meta_box_by_id'); 
 
 // Check you have a metabox.
 if( ! is_null( $found ) ){
-    $meta_box->render_meta_box($found, $mock_post);
+    $inspector->render_meta_box($found, $mock_post);
 }
 
 // This will then render the meta box. You can either use 
@@ -77,8 +94,8 @@ $this->assertOutputString('Find');
 
 // Or the Output::buffer() method included in this library.
 $output = Output::buffer(
-    function() use ($meta_box, $mock_post, $found) : void{
-        $meta_box->render_meta_box($found, $mock_post);
+    function() use ($inspector, $mock_post, $found) : void{
+        $inspector->render_meta_box($found, $mock_post);
     }
 ); 
 
@@ -89,7 +106,7 @@ $this->assertStringContainsString('more', $output);
 
 # Object Methods & Properties.
 
-## Gin0115\WPUnit_Helpers\WP\WP_Meta_Box
+## Gin0115\WPUnit_Helpers\WP\Meta_Box_Inspector
 
 ### Properties
 
@@ -102,6 +119,15 @@ Holds the mapped meta box instances.
 ### Methods
 
 ```php 
+/**
+ * Self contained, initliaser
+ *
+ * @return Meta_Box_Inspector
+ */
+public static function initialise(): Meta_Box_Inspector 
+```
+Used to create a populated instance of the inspector. Should only be used if you know for sure your metaboxes have already been registered.
+```php
 /**
  * Returns all the current meta_boxes, or null if not set.
  * Fire add_meta_boxes to add any waiting.
@@ -214,7 +240,7 @@ public $name;
 
 /**
  * Has the callback been registered yet.
- * Represents false for meta box details in WP_Meta_Box global
+ * Represents false for meta box details in Meta_Box_Inspector global
  * @var bool
  */
 public $isset = false;

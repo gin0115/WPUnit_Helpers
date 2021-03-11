@@ -40,7 +40,7 @@ class Test_WP_Dependencies extends \WP_UnitTestCase {
 		$this->assertDirectoryExists( self::TEST_PLUGIN_PATH . '/woocommerce' );
 	}
 
-    /** @testdox Aborts if attempting to download a none existant file */
+	/** @testdox Aborts if attempting to download a none existant file */
 	public function test_is_error_with_invlaid_url(): void {
 		$plugin_url = 'https://downloads.wordpress.org/plugin/woocommerce.4.9.2.zip';
 		$wp_path    = TEST_FIXTURES_PATH . '/FileSystem/wordpress';
@@ -49,12 +49,23 @@ class Test_WP_Dependencies extends \WP_UnitTestCase {
 		WP_Dependencies::install_remote_plugin_from_zip( 'fakeURL', $wp_path );
 	}
 
-    /** @testdox Aborts if attempting to download a none existant file */
+	/** @testdox Aborts if attempting to download a none existant file */
 	public function test_is_error_with_none_zip(): void {
 		$plugin_url = 'https://github.com/gin0115/pinkcrab_function_constructors/blob/develop/README.md';
 		$wp_path    = TEST_FIXTURES_PATH . '/FileSystem/wordpress';
 
 		$this->expectException( Exception::class );
 		WP_Dependencies::install_remote_plugin_from_zip( $plugin_url, $wp_path );
+	}
+
+	/** @testdox Activates a plugin based on its name */
+	public function test_activate_plugin(): void {
+		\copy(
+			TEST_FIXTURES_PATH . '/WP_Dependencies/Stub_Plugin.php',
+			TEST_WP_INSTANCE_PATH . '/wp-content/plugins/Stub_Plugin.php'
+		);
+
+		WP_Dependencies::activate_plugin( 'Stub_Plugin.php' );
+		$this->assertTrue( \is_plugin_active( 'Stub_Plugin.php' ) );
 	}
 }

@@ -43,7 +43,9 @@ class WP_Dependencies {
 		int $line
 	) {
 		if ( ! ( \error_reporting() & $severity ) ) {
+			// @codeCoverageIgnoreStart
 			return;
+			// @codeCoverageIgnoreEnd
 		}
 		throw new ErrorException( $message, 0, $severity, $file, $line );
 	}
@@ -69,25 +71,29 @@ class WP_Dependencies {
 		$zip       = new ZipArchive();
 		$temp_file = \tmpfile();
 		if ( $temp_file === false ) {
+			// @codeCoverageIgnoreStart
 			throw new Exception( 'Failed to create temp file' );
-
+			// @codeCoverageIgnoreEnd
 		}
 		$temp_file = \stream_get_meta_data( $temp_file )['uri'];
 
 		Output::println( \sprintf( '** Downloading zip from %s', $url ) );
 		$download = \file_put_contents( $temp_file, fopen( $url, 'r' ) );
-		if ( $download === false ) {
+		// Ensure we have content and its a zip files.
+		if ( $download === false || mime_content_type( $temp_file ) !== 'application/zip' ) {
 			\unlink( $temp_file );
 			\restore_error_handler();
-			throw new Exception( "Failed to download remote plugin from {$url}" );
+			throw new Exception( "Failed to download remote zip for plugin from {$url}" );
 		}
 
 		Output::println( '** Opening Zip file......' );
 		$plugin = $zip->open( $temp_file );
 		if ( $plugin !== true ) {
+			// @codeCoverageIgnoreStart
 			\unlink( $temp_file );
 			\restore_error_handler();
 			throw new Exception( "Failed to open downloaded zip file from {$url}" );
+			// @codeCoverageIgnoreEnd
 		}
 
 		Output::println( \sprintf( '** Extracting %d files..........', $zip->numFiles ) );
@@ -95,9 +101,11 @@ class WP_Dependencies {
 		if ( $result === true ) {
 			Output::println( \sprintf( '** Plugin installed to %s', $zip->getNameIndex( 0 ) ) );
 		} else {
+			// @codeCoverageIgnoreStart
 			\unlink( $temp_file );
 			\restore_error_handler();
 			throw new Exception( 'Failed to extract plugin' );
+			// @codeCoverageIgnoreEnd
 		}
 
 		$zip->close();
