@@ -46,7 +46,7 @@ class Utils {
 			$contents = scandir( $dir );
 
 			// Loop through contents.
-			foreach ( $contents as $object ) {
+			foreach ( $contents ?: array() as $object ) {
 				if ( $object !== '.' && $object !== '..' ) {
 					if ( filetype( $dir . '/' . $object ) === 'dir' ) {
 						self::recursive_rmdir( $dir . '/' . $object );
@@ -55,7 +55,9 @@ class Utils {
 					}
 				}
 			}
-			reset( $contents );
+			if ( is_array( $contents ) ) {
+				reset( $contents );
+			}
 			rmdir( $dir );
 		}
 	}

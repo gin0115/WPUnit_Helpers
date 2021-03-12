@@ -33,7 +33,7 @@ class Menu_Page_Inspector {
 	/**
 	 * All current admin pages
 	 *
-	 * @var Menu_Page_Entity
+	 * @var array<Menu_Page_Entity>
 	 */
 	public $admin_pages = array();
 
@@ -85,7 +85,7 @@ class Menu_Page_Inspector {
 	public function set_globals( bool $force = false ): self {
 		if ( $this->globals['menu'] === null
 		|| $this->globals['submenu'] === null
-		|| $force = true ) {
+		|| $force ) {
 			global $menu, $submenu;
 			$this->globals['menu']    = $menu;
 			$this->globals['submenu'] = $submenu;
@@ -103,7 +103,7 @@ class Menu_Page_Inspector {
 	 * @return self
 	 */
 	public function do_admin_menu( bool $force = false ): self {
-		if ( ! \did_action( 'admin_menu' ) || $force = true ) {
+		if ( ! \did_action( 'admin_menu' ) || $force ) {
 			\do_action( 'admin_menu' );
 		}
 		return $this;
@@ -112,14 +112,14 @@ class Menu_Page_Inspector {
 	/**
 	 * Returns all the menu items with seperators removed.
 	 *
-	 * @return array<int|stirng, array>
+	 * @return array<int, array<string>>
 	 */
 	protected function menu_items_without_seperators(): array {
 		return array_filter(
 			$this->globals['menu'] ?? array(),
 			function( array $menu_item ): bool {
 				return ! Str\contains( 'separator' )( $menu_item[2] )
-				|| ! $menu_item[4] === 'wp-menu-separator';
+				|| $menu_item[4] !== 'wp-menu-separator';
 			},
 			\ARRAY_FILTER_USE_BOTH
 		);
@@ -151,8 +151,8 @@ class Menu_Page_Inspector {
 	 * Gets all the sub menu pages, pased on the passed parent
 	 * array (from gloabl $menu).
 	 *
-	 * @param array $parent
-	 * @return array
+	 * @param array<int, string> $parent
+	 * @return array<string, string>
 	 */
 	protected function get_sub_pages( array $parent ): array {
 		if ( \is_null( $this->globals['submenu'] )
@@ -166,7 +166,7 @@ class Menu_Page_Inspector {
 	/**
 	 * Hydrates the menu page items to models.
 	 *
-	 * @param array $menu_item
+	 * @param array<string, mixed> $menu_item
 	 * @return Menu_Page_Entity
 	 */
 	protected function hydrate_parent_menu_page_entity( array $menu_item ): Menu_Page_Entity {
@@ -189,7 +189,7 @@ class Menu_Page_Inspector {
 	/**
 	 * Hydrates a sub page model
 	 *
-	 * @param array $children
+	 * @param array<int, string> $children
 	 * @param string $parent_key
 	 * @return array<Sub_Menu_Page_Entity>
 	 */
@@ -273,7 +273,7 @@ class Menu_Page_Inspector {
 	 * Checks if a user is allowed to access the page.
 	 *
 	 * @param \WP_User $user
-	 * @param Menu_Page_Interface $page
+	 * @param Menu_Page_Entity|Sub_Menu_Page_Entity $page
 	 * @return bool
 	 */
 	public function can_user_access_page( \WP_User $user, Menu_Page_Interface $page ): bool {
@@ -289,13 +289,15 @@ class Menu_Page_Inspector {
 	 * to edit.php, plugin.php etc, only with pages registered via add_menu_page() or
 	 * any of the sub pages.
 	 *
-	 * @param Menu_Page_Interface $page
+	 * @param Menu_Page_Entity|Sub_Menu_Page_Entity $page
 	 * @return void
 	 */
 	public function render_page( Menu_Page_Interface $page ): void {
 
 		$page_hook = is_a( $page, Menu_Page_Entity::class )
+			/** @var  Menu_Page_Entity */
 			? \get_plugin_page_hookname( $page->menu_slug, '' ) // Parent
+			/** @var  Sub_Menu_Page_Entity */
 			: \get_plugin_page_hookname( $page->menu_slug, $page->parent_slug );
 		do_action( $page_hook, function( $e ) {} );
 	}
