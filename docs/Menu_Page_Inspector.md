@@ -10,14 +10,14 @@ Set globals sets the global state to the Inspector. If they have not yet been po
 
 ``` php
 $inspector = new Menu_Page_Inspector;
-$inspector->set_globals()->do_admin_menu(); 
+$inspector->set_globals()->do_admin_menu()->set_pages(); 
 //or 
 $inspector = Menu_Page_Inspector::initialise();
 ```
 
 **You can repopulate the internal state of the inspector from the globals by calling**
 ```php
-$inspetor = $inspector->set_globals(true)->do_admin_menu(true);
+$inspetor = $inspector->set_globals(true)->do_admin_menu(true)->set_pages();
 ```
 *Both set_globals and do_admin_menu pass false as default, either can forced by passing true*
 
