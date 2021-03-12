@@ -6,27 +6,13 @@ Also allows for testing that users can access the page and rendering a pages con
 
 ## Setup
 
-``` php
-$inspector = new Menu_Page_Inspector;
-$inspector->set_globals()->do_admin_menu(); 
-```
-
 Set globals sets the global state to the Inspector. If they have not yet been populated, they will be set. Calling do_admin_menu will run the action to populate the globals. Also a static constructor, that does all the setup too. This will allow you to do all as one liner. 
 
 ``` php
-$inspector = Menu_Page_Inspector::initialise();
-// OR
-$inspector = new Menu_Page_Inspector();
+$inspector = new Menu_Page_Inspector;
 $inspector->set_globals()->do_admin_menu(); 
-```
-
-You can even one liner it as part of your tests
-
-``` php
-$this->assertEqual(
-    'My Plugin Settings', 
-    Menu_Page_Inspector::initialise()->find('page_slug')->menu_title
-);
+//or 
+$inspector = Menu_Page_Inspector::initialise();
 ```
 
 ### find(string $menu_slug): ? Menu_Page_Interface
@@ -240,58 +226,58 @@ public function render_page( Menu_Page_Interface $page ): void
 
 Parent menu page model
 ```php
-	/** @var string	*/
-	public $page_title;
+/** @var string	*/
+public $page_title;
 
-	/** @var string	*/
-	public $menu_title;
+/** @var string	*/
+public $menu_title;
 
-	/** @var string	*/
-	public $permission;
+/** @var string	*/
+public $permission;
 
-	/** @var string	*/
-	public $menu_slug;
+/** @var string	*/
+public $menu_slug;
 
-	/** @var string	*/
-	public $hook_name;
+/** @var string	*/
+public $hook_name;
 
-	/** @var string	*/
-	public $icon;
+/** @var string	*/
+public $icon;
 
-	/** @var float */
-	public $position;
+/** @var float */
+public $position;
 
-	/** @var string	*/
-	public $url;
+/** @var string	*/
+public $url;
 
-	/** @var array<Sub_Menu_Page_Entity> */
-	public $children = array();
+/** @var array<Sub_Menu_Page_Entity> */
+public $children = array();
 ```
 
 ### Sub_Menu_Page_Entity
 
 Parent menu page model
 ```php
-	/** @var string	*/
-	public $page_title;
+/** @var string	*/
+public $page_title;
 
-	/** @var string	*/
-	public $menu_title;
+/** @var string	*/
+public $menu_title;
 
-	/** @var string	*/
-	public $permission;
+/** @var string	*/
+public $permission;
 
-	/** @var string	*/
-	public $menu_slug;
+/** @var string	*/
+public $menu_slug;
 
-	/** @var string	*/
-	public $parent_slug;
+/** @var string	*/
+public $parent_slug;
 
-	/** @var float */
-	public $position;
+/** @var float */
+public $position;
 
-	/** @var string	*/
-	public $url;
+/** @var string	*/
+public $url;
 ```
 
 Please note both **Menu_Page_Entity** & **Sub_Menu_Page_Entity** implement the **Menu_Page_Interface**, this interface has no methods and is to act as union between pages.
