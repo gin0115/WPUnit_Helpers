@@ -15,6 +15,13 @@ $inspector->set_globals()->do_admin_menu();
 $inspector = Menu_Page_Inspector::initialise();
 ```
 
+**You can repopulate the internal state of the inspector from the globals by calling**
+```php
+$inspetor = $inspector->set_globals(true)->do_admin_menu(true);
+```
+*Both set_globals and do_admin_menu pass false as default, either can forced by passing true*
+
+
 ### find(string $menu_slug): ? Menu_Page_Interface
 
 This allows for searching against both parent and child page types. This will return the first result it finds. Based on the page type found, will return either **Menu_Page_Entity** or **Sub_Menu_Page_Entity**
