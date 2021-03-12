@@ -3,6 +3,4 @@ wordpress
 composer.lock
 coverage-report
 coverage.xml
-clover.xml
 plugin.php
-_plugin.php
