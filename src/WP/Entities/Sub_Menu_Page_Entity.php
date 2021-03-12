@@ -1,8 +1,7 @@
 <?php
 
-
 /**
- * Menu Page (parent) Entity
+ * Sub Menu Page (child) Entity
  *
  * @author Glynn Quelch <glynn.quelch@gmail.com>
  * @since 1.0.0
@@ -15,49 +14,44 @@ namespace Gin0115\WPUnit_Helpers\WP\Entities;
 
 use Gin0115\WPUnit_Helpers\WP\Entities\Menu_Page_Interface;
 
-class Menu_Page_Entity implements Menu_Page_Interface {
-
+class Sub_Menu_Page_Entity implements Menu_Page_Interface {
 	/**
-	 * The pages displayed title
+	 * The subpages page title
 	 *
 	 * @var string
 	 */
 	public $page_title;
-
 	/**
-	 * The menu title
+	 * Menu title
 	 *
 	 * @var string
 	 */
 	public $menu_title;
-
 	/**
-	 * Min permissions needed to access
+	 * Which user permissions are required
 	 *
 	 * @var string
 	 */
 	public $permission;
-
 	/**
-	 * The pages menu slug
+	 * Menu slug
 	 *
 	 * @var string
 	 */
 	public $menu_slug;
-
 	/**
-	 * The hook name
+	 * Parent pages slug.
 	 *
 	 * @var string
 	 */
-	public $hook_name;
+	public $parent_slug;
 
 	/**
-	 * Icon to display
+	 * The subpages URL
 	 *
 	 * @var string
 	 */
-	public $icon;
+	public $url;
 
 	/**
 	 * Page postiton.
@@ -65,20 +59,4 @@ class Menu_Page_Entity implements Menu_Page_Interface {
 	 * @var float
 	 */
 	public $position;
-
-	/**
-	 * The pages URL
-	 * This sometimes doesnt work as expect, with some plugins which create custom rules
-	 * such as WooCommerce.
-	 *
-	 * @var string
-	 */
-	public $url;
-
-	/**
-	 * Array of children pages
-	 *
-	 * @var array<Sub_Menu_Page_Entity>
-	 */
-	public $children = array();
 }
