@@ -36,7 +36,8 @@
     },
     "require": {
         "php": ">=7.1.0",
-        "pinkcrab/function-constructors": "~0.1.0"
+        "pinkcrab/function-constructors": "~0.1.0",
+        "automattic/jetpack-constants": "^1.6"
     },
     "scripts": {
         "test": "phpunit --coverage-clover clover.xml",

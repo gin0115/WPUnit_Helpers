@@ -10,6 +10,15 @@ $this->assertEquals('My Title', $box->title);
 ```
 **[Read More](docs/Meta_Box_Inspector.md)**
 
+## Menu Page Inspector
+Allows for the checking of added pages and sub pages. Can be searched to ensure pages are added as expected and can render the pages content, for intergration style tests. Allows for testing parent and child(sub) pages.
+```php
+$page = Menu_Page_Inspector::initialise()->find_parent_page('parent_page_slug');
+$this->assertInstanceOf(Menu_Page_Entity::class, $box);
+$this->assertEquals('My Settings', $page->menu_title);
+```
+**[Read More](docs/Menu_Page_Inspector.md)**
+
 ## WP Dependencies
 Allows for the quick and simple installation of themes and plugins from remote sources.
 ```php

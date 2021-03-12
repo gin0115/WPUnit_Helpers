@@ -1,6 +1,6 @@
 # Meta_Box_Inspector
 
-Working with the $Meta_Box_Inspector global can be fun at times, meta boxes are deeply nested in a multidimensional array of or arrays. Finding if your metabox has been registered to a post type and its details, is painful. Especially in intergration style tests.
+Working with the $wp_meta_box global can be fun at times, meta boxes are deeply nested in a multidimensional array of or arrays. Finding if your metabox has been registered to a post type and its details, is painful. Especially in intergration style tests.
 
 The Meta_Box_Inspector class will map all registered meta boxes to a **Meta_Box_Entity** object, where all values can be recalled and tested against. You can even render the view of a meta box from any WP_Post instance.
 

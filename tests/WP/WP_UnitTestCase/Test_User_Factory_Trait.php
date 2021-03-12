@@ -41,3 +41,4 @@ class Test_User_Factory_Trait extends \WP_UnitTestCase {
 		$this->assertContains( 'customer', $user->roles );
 	}
 }
+
