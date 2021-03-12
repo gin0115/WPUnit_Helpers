@@ -19,7 +19,7 @@ include __DIR__ . '/vendor/autoload.php';
 add_action(
 	'admin_menu',
 	function() {
-		$r = Menu_Page_Inspector::initialise()->set_pages();
+		$r = Menu_Page_Inspector::initialise();
 		// dump( Menu_Page_Inspector::initialise()->set_pages() );
 		// dump( Menu_Page_Inspector::initialise()->set_pages()->find_parent( 'index.php' ) );
 		// dump( $r->find_first_child( 'plugins.php' ) );
@@ -27,8 +27,7 @@ add_action(
 
 		dump( $r );
 		$r->render_page(
-			$r->find( 'postman_email_log' ),
-			$user
+			$r->find( 'postman_email_log' )
 		);
 	}, 999999999
 );

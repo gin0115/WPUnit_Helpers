@@ -72,6 +72,7 @@ class Menu_Page_Inspector {
 		$instance = new self();
 		$instance->set_globals();
 		$instance->do_admin_menu();
+		$instance->set_pages();
 		return $instance;
 	}
 
@@ -94,6 +95,9 @@ class Menu_Page_Inspector {
 
 	/**
 	 * Runs the admin_menu action if its not been called.
+	 *
+	 * If being used on a website, do not call this if in wp-admin as will
+	 * cause an infinate loop.
 	 *
 	 * @param bool $force If true, will rerun do_action( 'admin_menu' );
 	 * @return self
@@ -129,16 +133,16 @@ class Menu_Page_Inspector {
 	 */
 	public function set_pages(): self {
 		foreach ( $this->menu_items_without_seperators()
-		as $position => $menu_item ) {
+			as $position => $menu_item ) {
 			$this->admin_pages[ $menu_item[2] ] =
-			$this->hydrate_parent_menu_page_entity(
-				array(
-					'parent'   => $menu_item,
-					'position' => $position,
-					'key'      => $menu_item[2],
-					'children' => $this->get_sub_pages( $menu_item ),
-				)
-			);
+				$this->hydrate_parent_menu_page_entity(
+					array(
+						'parent'   => $menu_item,
+						'position' => $position,
+						'key'      => $menu_item[2],
+						'children' => $this->get_sub_pages( $menu_item ),
+					)
+				);
 		}
 		return $this;
 	}
@@ -217,12 +221,12 @@ class Menu_Page_Inspector {
 		return Arr\flattenByN( 1 )( $children );
 	}
 
-    /**
-     * Finds the first child or parent page.
-     *
-     * @param string $menu_slug
-     * @return Menu_Page_Interface|null
-     */
+	/**
+	 * Finds the first child or parent page.
+	 *
+	 * @param string $menu_slug
+	 * @return Menu_Page_Interface|null
+	 */
 	public function find( string $menu_slug ): ?Menu_Page_Interface {
 		return Arr\filterFirst(
 			F\propertyEquals( 'menu_slug', $menu_slug )
@@ -293,7 +297,6 @@ class Menu_Page_Inspector {
 		$page_hook = is_a( $page, Menu_Page_Entity::class )
 			? \get_plugin_page_hookname( $page->menu_slug, '' ) // Parent
 			: \get_plugin_page_hookname( $page->menu_slug, $page->parent_slug );
-		dump( $page_hook, $page->function );
 		do_action( $page_hook, function( $e ) {} );
 	}
 }
