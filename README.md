@@ -1,6 +1,22 @@
 # WPUnit_Helpers
 Collection of helper functions, classes and traits for using WPUnit. 
 
+![alt text](https://img.shields.io/badge/Current_Version-1.0.0-yellow.svg?style=flat " ") 
+[![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+
+![](https://github.com/gin0115/WPUnit_Helpers/workflows/GitHub_CI/badge.svg " ")
+
+[![codecov](https://codecov.io/gh/gin0115/WPUnit_Helpers/branch/main/graph/badge.svg?token=0IFKfuE5Sf)](https://codecov.io/gh/gin0115/WPUnit_Helpers)
+
+## Version
+**1.0.0**
+
+## Setup
+```bash
+$ composer require-dev gin0115/wpunit-helpers
+```
+
+
 ## Meta Box Inspector
 Check if meta boxes have been registered correctly, check all values and render the view callback.
 ```php
@@ -59,3 +75,7 @@ var_dump($result); // ['key1 -|- value1', 'key2 -|- value2']
 **[Read More](docs/Utils.md)**
 
 ## Output
+
+
+## Change log
+1.0.0 - Most in place now, still needs more docs and some extra tests on output.
