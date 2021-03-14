@@ -33,14 +33,26 @@ class Meta_Data_Inspector
 	/**
 	 * The WP global for all meta data.
 	 * type => [
-	 * 		sub_type => [
-	 * 			meta_key => [meta details]
-	 * 		]
+	 *  sub_type => [
+	 *    meta_key => [meta details]
+	 *  ]
 	 * ]
 	 * 
 	 * @var array<string, array>
 	 */
 	protected $wp_meta_keys = null;
+
+	/**
+	 * Static constructor
+	 *
+	 * @return self
+	 */
+	public static function initialise(): self
+	{
+		$instance = new self();
+		$instance->set_registered_meta_data();
+		return $instance;
+	}
 
 	/**	
 	 * Sets the intneral registered meta data array.
