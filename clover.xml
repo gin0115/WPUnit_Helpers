@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1615801570">
-  <project timestamp="1615801570">
+<coverage generated="1615803450">
+  <project timestamp="1615803450">
     <package name="Gin0115\WPUnit_Helpers">
       <file name="/shared/httpd/woo1/htdocs/wp-content/plugins/WPUnit_Helpers/src/Objects.php">
         <class name="Gin0115\WPUnit_Helpers\Objects" namespace="Gin0115\WPUnit_Helpers">
@@ -272,34 +272,38 @@
       </file>
       <file name="/shared/httpd/woo1/htdocs/wp-content/plugins/WPUnit_Helpers/src/WP/Meta_Data_Inspector.php">
         <class name="Gin0115\WPUnit_Helpers\WP\Meta_Data_Inspector" namespace="Gin0115\WPUnit_Helpers\WP" fullPackage="Meta.Data">
-          <metrics complexity="21" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="71" coveredstatements="71" elements="82" coveredelements="82"/>
+          <metrics complexity="21" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="74" coveredstatements="74" elements="85" coveredelements="85"/>
         </class>
         <line num="50" type="method" name="initialise" visibility="public" complexity="1" crap="1" count="10"/>
+        <line num="51" type="stmt" count="10"/>
         <line num="52" type="stmt" count="10"/>
         <line num="53" type="stmt" count="10"/>
-        <line num="54" type="stmt" count="10"/>
-        <line num="62" type="method" name="set_registered_meta_data" visibility="public" complexity="3" crap="3" count="11"/>
-        <line num="65" type="stmt" count="11"/>
+        <line num="61" type="method" name="set_registered_meta_data" visibility="public" complexity="3" crap="3" count="11"/>
+        <line num="63" type="stmt" count="11"/>
+        <line num="64" type="stmt" count="11"/>
         <line num="66" type="stmt" count="11"/>
-        <line num="68" type="stmt" count="11"/>
-        <line num="69" type="stmt" count="11"/>
-        <line num="72" type="stmt" count="11"/>
-        <line num="75" type="stmt" count="11"/>
-        <line num="86" type="method" name="map_meta_by_type" visibility="protected" complexity="1" crap="1" count="11"/>
+        <line num="67" type="stmt" count="11"/>
+        <line num="70" type="stmt" count="11"/>
+        <line num="73" type="stmt" count="11"/>
+        <line num="84" type="method" name="map_meta_by_type" visibility="protected" complexity="1" crap="1" count="11"/>
+        <line num="85" type="stmt" count="11"/>
+        <line num="86" type="stmt" count="11"/>
         <line num="88" type="stmt" count="11"/>
+        <line num="89" type="stmt" count="11"/>
         <line num="90" type="stmt" count="11"/>
-        <line num="91" type="stmt" count="11"/>
         <line num="93" type="stmt" count="11"/>
         <line num="105" type="method" name="map_meta_by_subtype" visibility="protected" complexity="1" crap="1" count="11"/>
+        <line num="106" type="stmt" count="11"/>
         <line num="107" type="stmt" count="11"/>
-        <line num="108" type="stmt" count="11"/>
+        <line num="109" type="stmt" count="11"/>
         <line num="110" type="stmt" count="11"/>
         <line num="111" type="stmt" count="11"/>
         <line num="112" type="stmt" count="11"/>
-        <line num="113" type="stmt" count="11"/>
-        <line num="129" type="method" name="map_meta_by_key" visibility="protected" complexity="3" crap="3" count="11"/>
-        <line num="131" type="stmt" count="11"/>
+        <line num="128" type="method" name="map_meta_by_key" visibility="protected" complexity="3" crap="3" count="11"/>
+        <line num="129" type="stmt" count="11"/>
+        <line num="130" type="stmt" count="11"/>
         <line num="132" type="stmt" count="11"/>
+        <line num="133" type="stmt" count="11"/>
         <line num="134" type="stmt" count="11"/>
         <line num="135" type="stmt" count="11"/>
         <line num="136" type="stmt" count="11"/>
@@ -314,49 +318,48 @@
         <line num="145" type="stmt" count="11"/>
         <line num="146" type="stmt" count="11"/>
         <line num="147" type="stmt" count="11"/>
-        <line num="148" type="stmt" count="11"/>
-        <line num="149" type="stmt" count="11"/>
-        <line num="161" type="method" name="find_post_meta" visibility="public" complexity="3" crap="3" count="2"/>
+        <line num="159" type="method" name="find_post_meta" visibility="public" complexity="3" crap="3" count="2"/>
+        <line num="160" type="stmt" count="2"/>
+        <line num="161" type="stmt" count="2"/>
+        <line num="162" type="stmt" count="2"/>
         <line num="163" type="stmt" count="2"/>
         <line num="164" type="stmt" count="2"/>
         <line num="165" type="stmt" count="2"/>
-        <line num="166" type="stmt" count="2"/>
+        <line num="166" type="stmt" count="1"/>
         <line num="167" type="stmt" count="2"/>
-        <line num="168" type="stmt" count="2"/>
-        <line num="169" type="stmt" count="1"/>
-        <line num="170" type="stmt" count="2"/>
-        <line num="179" type="method" name="for_post_types" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="181" type="stmt" count="1"/>
+        <line num="176" type="method" name="for_post_types" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="177" type="stmt" count="1"/>
+        <line num="178" type="stmt" count="1"/>
+        <line num="179" type="stmt" count="1"/>
+        <line num="180" type="stmt" count="1"/>
         <line num="182" type="stmt" count="1"/>
         <line num="183" type="stmt" count="1"/>
-        <line num="184" type="stmt" count="1"/>
-        <line num="186" type="stmt" count="1"/>
-        <line num="187" type="stmt" count="1"/>
-        <line num="198" type="method" name="find_term_meta" visibility="public" complexity="3" crap="3" count="2"/>
+        <line num="194" type="method" name="find_term_meta" visibility="public" complexity="3" crap="3" count="2"/>
+        <line num="195" type="stmt" count="2"/>
+        <line num="196" type="stmt" count="2"/>
+        <line num="197" type="stmt" count="2"/>
+        <line num="198" type="stmt" count="2"/>
+        <line num="199" type="stmt" count="2"/>
         <line num="200" type="stmt" count="2"/>
-        <line num="201" type="stmt" count="2"/>
+        <line num="201" type="stmt" count="1"/>
         <line num="202" type="stmt" count="2"/>
-        <line num="203" type="stmt" count="2"/>
-        <line num="204" type="stmt" count="2"/>
-        <line num="205" type="stmt" count="2"/>
-        <line num="206" type="stmt" count="1"/>
-        <line num="207" type="stmt" count="2"/>
-        <line num="216" type="method" name="for_taxonomies" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="218" type="stmt" count="1"/>
-        <line num="219" type="stmt" count="1"/>
-        <line num="220" type="stmt" count="1"/>
-        <line num="221" type="stmt" count="1"/>
-        <line num="228" type="method" name="find_user_meta" visibility="public" complexity="3" crap="3" count="2"/>
-        <line num="230" type="stmt" count="2"/>
+        <line num="211" type="method" name="for_taxonomies" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="212" type="stmt" count="1"/>
+        <line num="213" type="stmt" count="1"/>
+        <line num="214" type="stmt" count="1"/>
+        <line num="215" type="stmt" count="1"/>
+        <line num="216" type="stmt" count="1"/>
+        <line num="224" type="method" name="find_user_meta" visibility="public" complexity="3" crap="3" count="2"/>
+        <line num="225" type="stmt" count="2"/>
+        <line num="226" type="stmt" count="2"/>
+        <line num="227" type="stmt" count="2"/>
+        <line num="228" type="stmt" count="2"/>
+        <line num="229" type="stmt" count="2"/>
+        <line num="230" type="stmt" count="1"/>
         <line num="231" type="stmt" count="2"/>
-        <line num="232" type="stmt" count="2"/>
-        <line num="233" type="stmt" count="2"/>
-        <line num="234" type="stmt" count="2"/>
-        <line num="235" type="stmt" count="1"/>
-        <line num="236" type="stmt" count="2"/>
-        <line num="246" type="method" name="filter" visibility="public" complexity="1" crap="1" count="1"/>
-        <line num="248" type="stmt" count="1"/>
-        <metrics loc="250" ncloc="149" classes="1" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="71" coveredstatements="71" elements="82" coveredelements="82"/>
+        <line num="241" type="method" name="filter" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="242" type="stmt" count="1"/>
+        <metrics loc="244" ncloc="143" classes="1" methods="11" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="74" coveredstatements="74" elements="85" coveredelements="85"/>
       </file>
       <file name="/shared/httpd/woo1/htdocs/wp-content/plugins/WPUnit_Helpers/src/WP/WP_Dependencies.php">
         <class name="Gin0115\WPUnit_Helpers\WP\WP_Dependencies" namespace="Gin0115\WPUnit_Helpers\WP" fullPackage="WP">
@@ -443,6 +446,6 @@
         <metrics loc="49" ncloc="27" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="9" coveredelements="9"/>
       </file>
     </package>
-    <metrics files="14" loc="1504" ncloc="789" classes="9" methods="52" coveredmethods="50" conditionals="0" coveredconditionals="0" statements="301" coveredstatements="299" elements="353" coveredelements="349"/>
+    <metrics files="14" loc="1498" ncloc="783" classes="9" methods="52" coveredmethods="50" conditionals="0" coveredconditionals="0" statements="304" coveredstatements="302" elements="356" coveredelements="352"/>
   </project>
 </coverage>

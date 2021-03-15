@@ -29,10 +29,19 @@ $this->assertEquals('My Title', $box->title);
 Allows for the checking of added pages and sub pages. Can be searched to ensure pages are added as expected and can render the pages content, for intergration style tests. Allows for testing parent and child(sub) pages.
 ```php
 $page = Menu_Page_Inspector::initialise()->find_parent_page('parent_page_slug');
-$this->assertInstanceOf(Menu_Page_Entity::class, $box);
+$this->assertInstanceOf(Menu_Page_Entity::class, $page);
 $this->assertEquals('My Settings', $page->menu_title);
 ```
 **[Read More](docs/Menu_Page_Inspector.md)**
+
+## Meta Data Inspector
+Allows for the checking of registered meta data, for either post, term, user, comment and any other custom meta type added.
+```php
+$post_meta = Menu_Page_Inspector::initialise()->find_post_meta('post', 'my_key');
+$this->assertInstanceOf(Meta_Data_Entity::class, $post_meta);
+$this->assertEquals('This is my meta field', $post_meta->description);
+```
+**[Read More](docs/Meta_Data_Inspector.md)**
 
 ## WP Dependencies
 Allows for the quick and simple installation of themes and plugins from remote sources.
