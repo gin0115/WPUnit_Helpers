@@ -1,18 +1,18 @@
 # WPUnit_Helpers
 Collection of helper functions, classes and traits for using WPUnit. 
 
-![alt text](https://img.shields.io/badge/Current_Version-1.0.0-yellow.svg?style=flat " ") 
+![alt text](https://img.shields.io/badge/Current_Version-1.0.1-yellow.svg?style=flat " ") 
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
 ![](https://github.com/gin0115/WPUnit_Helpers/workflows/GitHub_CI/badge.svg " ")
 [![codecov](https://codecov.io/gh/gin0115/WPUnit_Helpers/branch/main/graph/badge.svg?token=0IFKfuE5Sf)](https://codecov.io/gh/gin0115/WPUnit_Helpers)
 
 ## Version
-**1.0.0**
+**1.0.1**
 
 ## Setup
 ```bash
-$ composer require-dev gin0115/wpunit-helpers
+$ composer require --dev gin0115/wpunit-helpers
 ```
 
 
@@ -86,4 +86,5 @@ var_dump($result); // ['key1 -|- value1', 'key2 -|- value2']
 
 
 ## Change log
-1.0.0 - Most in place now, still needs more docs and some extra tests on output.
+* 1.0.1 - Added in Meta_Data_Inspector for checking all registered meta data.
+* 1.0.0 - Most in place now, still needs more docs and some extra tests on output.
