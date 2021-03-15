@@ -71,3 +71,28 @@ foreach($meta as $value){
     $this->assertInArray($meta->meta_key, $expected);
 }
 ```
+
+### find_term_meta(string $meta_key): ? Meta_Data_Entity
+You can search for a registered user meta key, if found will return a populated Meta Data Entity or null if not found.
+
+```php 
+// Find based on  meta key
+$inspector = Meta_Data_Inspector::initialise();
+$found = $inspector->find_user_meta('users_account_ref');
+var_dump($found); // Either instance of Meta_Data_Entity or null if not found.
+$this->assertNotNull($found);
+```
+
+### filter(callable $filter): array<Meta_Data_Entity>
+This allows for creating more complex queries against all registered meta data.
+```php 
+$inspector = Meta_Data_Inspector::initialise();
+$found = $inspector->filter(function(Meta_Data_Entity $meta): bool{
+    return $meta->show_in_rest !== false;
+});
+var_dump($found); // Will have all registed meta which has defined rest schema.
+```
+
+# Object Methods & Properties
+
+@todo
