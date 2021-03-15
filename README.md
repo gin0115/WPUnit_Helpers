@@ -12,7 +12,7 @@ Collection of helper functions, classes and traits for using WPUnit.
 
 ## Setup
 ```bash
-$ composer require-dev gin0115/wpunit-helpers
+$ composer require --dev gin0115/wpunit-helpers
 ```
 
 
