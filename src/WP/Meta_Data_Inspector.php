@@ -140,7 +140,7 @@ class Meta_Data_Inspector
 					$entity->single = $meta_details['single'];
 					$entity->sanitize_callback = $meta_details['sanitize_callback'];
 					$entity->auth_callback = $meta_details['auth_callback'];
-					$entity->default = $meta_details['default'];
+					$entity->default = ! empty($meta_details['default']) ? $meta_details['default'] : '';
 					$entity->show_in_rest = $meta_details['show_in_rest'];
 					return $entity;
 				},
