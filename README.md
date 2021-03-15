@@ -58,9 +58,9 @@ Reflection is super useful in testing, especially if you cant access internal pr
 _These also work on static methods/properties_
 ```php
 //  Access protected & privates properties.
-Objects::get_property($instnace, 'property');
+Objects::get_property($instance, 'property');
 // Set protected or private properties.
-Objects::set_property($instnace, 'property', 'new value');
+Objects::set_property($instance, 'property', 'new value');
 // Invoke private or protected method.
 Objects::invoke_method($instance, 'method', ['the', 'args']);
 ```
