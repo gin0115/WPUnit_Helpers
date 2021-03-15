@@ -24,16 +24,17 @@ The most common form of meta used in WP is post meta. The Inspector will allow y
 
 
 ### find_post_meta(string $post_type, string $meta_key): ? Meta_Data_Entity
+You can search for a registered post meta key, if found will return a populated Meta Data Entity or null if not found.
 ```php 
 // Find based on  meta key
 $inspector = Meta_Data_Inspector::initialise();
-$found = $inspector->find_post_meta('post', 'my_meta_box_by_id');
+$found = $inspector->find_post_meta('post', 'post_meta_key_1');
 var_dump($found); // Either instance of Meta_Data_Entity or null if not found.
 $this->assertEquals('post', $found->sub_type);
 ```
 
 ### for_post_types(string ...$post_types): array<Meta_Data_Entity>
-
+You can find all meta for a single or multiple post types. Will return an array of all post meta found for the defined post types
 ```php
 $inspector = Meta_Data_Inspector::initialise();
 $meta = $inspector->find_post_meta('post', 'page');
@@ -46,3 +47,27 @@ foreach($meta as $value){
 }
 ```
 
+### find_term_meta(string $taxonomy, string $meta_key): ? Meta_Data_Entity
+You can search for a registered term meta key, if found will return a populated Meta Data Entity or null if not found.
+
+```php 
+// Find based on  meta key
+$inspector = Meta_Data_Inspector::initialise();
+$found = $inspector->find_term_meta('post_tag', 'term_meta_key_1');
+var_dump($found); // Either instance of Meta_Data_Entity or null if not found.
+$this->assertEquals('post_tag', $found->sub_type);
+```
+
+### for_taxonomies(string ...$taxonomies): array<Meta_Data_Entity>
+You can find all meta for a single or multiple post types. Will return an array of all term meta found for the defined taxonmies
+```php
+$inspector = Meta_Data_Inspector::initialise();
+$meta = $inspector->find_term_meta('my_taxonomy');
+var_dump($meta); //[Meta_Data_Entity, Meta_Data_Entity];
+
+$expected = ['term_meta1', 'term_meta2'];
+$this->assertCount(count($expected), $meta);
+foreach($meta as $value){
+    $this->assertInArray($meta->meta_key, $expected);
+}
+```
