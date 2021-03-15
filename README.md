@@ -1,14 +1,14 @@
 # WPUnit_Helpers
 Collection of helper functions, classes and traits for using WPUnit. 
 
-![alt text](https://img.shields.io/badge/Current_Version-1.0.0-yellow.svg?style=flat " ") 
+![alt text](https://img.shields.io/badge/Current_Version-1.0.1-yellow.svg?style=flat " ") 
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
 ![](https://github.com/gin0115/WPUnit_Helpers/workflows/GitHub_CI/badge.svg " ")
 [![codecov](https://codecov.io/gh/gin0115/WPUnit_Helpers/branch/main/graph/badge.svg?token=0IFKfuE5Sf)](https://codecov.io/gh/gin0115/WPUnit_Helpers)
 
 ## Version
-**1.0.0**
+**1.0.1**
 
 ## Setup
 ```bash
@@ -29,10 +29,19 @@ $this->assertEquals('My Title', $box->title);
 Allows for the checking of added pages and sub pages. Can be searched to ensure pages are added as expected and can render the pages content, for intergration style tests. Allows for testing parent and child(sub) pages.
 ```php
 $page = Menu_Page_Inspector::initialise()->find_parent_page('parent_page_slug');
-$this->assertInstanceOf(Menu_Page_Entity::class, $box);
+$this->assertInstanceOf(Menu_Page_Entity::class, $page);
 $this->assertEquals('My Settings', $page->menu_title);
 ```
 **[Read More](docs/Menu_Page_Inspector.md)**
+
+## Meta Data Inspector
+Allows for the checking of registered meta data, for either post, term, user, comment and any other custom meta type added.
+```php
+$post_meta = Menu_Page_Inspector::initialise()->find_post_meta('post', 'my_key');
+$this->assertInstanceOf(Meta_Data_Entity::class, $post_meta);
+$this->assertEquals('This is my meta field', $post_meta->description);
+```
+**[Read More](docs/Meta_Data_Inspector.md)**
 
 ## WP Dependencies
 Allows for the quick and simple installation of themes and plugins from remote sources.
@@ -77,4 +86,5 @@ var_dump($result); // ['key1 -|- value1', 'key2 -|- value2']
 
 
 ## Change log
-1.0.0 - Most in place now, still needs more docs and some extra tests on output.
+* 1.0.1 - Added in Meta_Data_Inspector for checking all registered meta data.
+* 1.0.0 - Most in place now, still needs more docs and some extra tests on output.
