@@ -177,7 +177,7 @@ class Menu_Page_Inspector {
 		$page->page_title = $menu_item['parent'][3];
 		$page->hook_name  = $menu_item['parent'][5];
 		$page->icon       = $menu_item['parent'][6];
-		$page->url        = \admin_url( $menu_item['parent'][2] );
+		$page->url        = \menu_page_url( $menu_item['parent'][2], false );
 		$page->children   = $this->hydrate_child_menu_page_entity(
 			$menu_item['children'],
 			$page->menu_slug
@@ -202,7 +202,7 @@ class Menu_Page_Inspector {
 				$page->menu_title  = $child[0];
 				$page->permission  = $child[1];
 				$page->page_title  = $child[3];
-				$page->url         = \admin_url( $child[2] );
+				$page->url         = \menu_page_url( $child[2], false );
 				$page->position    = (float) $key;
 				return $page;
 			},
@@ -222,7 +222,7 @@ class Menu_Page_Inspector {
 	}
 
 	/**
-	 * Finds the first child or parent page.
+	 * Finds the first page or group
 	 *
 	 * @param string $menu_slug
 	 * @return Menu_Page_Interface|null
@@ -254,6 +254,17 @@ class Menu_Page_Inspector {
 	 * @return Menu_Page_Entity|null
 	 */
 	public function find_parent( string $menu_slug ): ?Menu_Page_Entity {
+		return \array_key_exists( $menu_slug, $this->admin_pages )
+			? $this->admin_pages[ $menu_slug ] : null;
+	}
+
+	/**
+	 * Attempts to find a parent page based on its menu slug.
+	 *
+	 * @param string $menu_slug
+	 * @return Menu_Page_Entity|null
+	 */
+	public function find_group( string $menu_slug ): ?Menu_Page_Entity {
 		return \array_key_exists( $menu_slug, $this->admin_pages )
 			? $this->admin_pages[ $menu_slug ] : null;
 	}
