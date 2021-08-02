@@ -12,15 +12,12 @@ declare( strict_types=1 );
 
 namespace Gin0115\WPUnit_Helpers\WP;
 
-use Gin0115\WPUnit_Helpers\Output;
 use Gin0115\WPUnit_Helpers\Utils;
 use Gin0115\WPUnit_Helpers\WP\Entities\Menu_Page_Interface;
-
 use Gin0115\WPUnit_Helpers\WP\Entities\Sub_Menu_Page_Entity;
 use Gin0115\WPUnit_Helpers\WP\Entities\Menu_Page_Entity;
 use PinkCrab\FunctionConstructors\Arrays as Arr;
 use PinkCrab\FunctionConstructors\Strings as Str;
-use PinkCrab\FunctionConstructors\Comparisons as C;
 use PinkCrab\FunctionConstructors\GeneralFunctions as F;
 
 /**
@@ -66,13 +63,20 @@ class Menu_Page_Inspector {
 	 * Creates an instance, calls admin_meny action, sets globals
 	 * and popules the admin page array.
 	 *
+	 * @param bool $force If set to true, will reset and rebuild the internal state.
 	 * @return self
 	 */
-	public static function initialise(): self {
+	public static function initialise(bool $force = false): self {
 		$instance = new self();
-		$instance->set_globals();
-		$instance->do_admin_menu();
+
+		if($force){
+			$instance->reset_globals();
+		}
+
+		$instance->do_admin_menu($force);
+		$instance->set_globals($force);
 		$instance->set_pages();
+
 		return $instance;
 	}
 
@@ -90,6 +94,20 @@ class Menu_Page_Inspector {
 			$this->globals['menu']    = $menu;
 			$this->globals['submenu'] = $submenu;
 		}
+		return $this;
+	}
+
+	/**
+	 * Resets the menu globals and internal state (to null)
+	 *
+	 * @return self
+	 */
+	public function reset_globals(): self {
+		global $menu, $submenu;
+		$menu = null;
+		$submenu = null;
+		$this->globals['menu']    = null;
+		$this->globals['submenu'] = null;
 		return $this;
 	}
 
@@ -254,6 +272,7 @@ class Menu_Page_Inspector {
 	 * @return Menu_Page_Entity|null
 	 */
 	public function find_parent( string $menu_slug ): ?Menu_Page_Entity {
+		dump($this);
 		return \array_key_exists( $menu_slug, $this->admin_pages )
 			? $this->admin_pages[ $menu_slug ] : null;
 	}
