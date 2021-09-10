@@ -55,7 +55,7 @@ class Menu_Page_Inspector {
 	 * [5] => Hookname
 	 * [6] => Icon
 	 *
-	 * @var array<string, array|null>
+	 * @var array<string, mixed[]|null>
 	 */
 	protected $globals = array(
 		'menu'    => null,
