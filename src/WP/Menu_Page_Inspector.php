@@ -54,6 +54,8 @@ class Menu_Page_Inspector {
 		'submenu' => null,
 	);
 
+	// HI
+
 	/**
 	 * Creates an instance, calls admin_menu action, sets globals
 	 * and populates the admin page array.
