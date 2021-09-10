@@ -12,21 +12,13 @@ declare( strict_types=1 );
 
 namespace Gin0115\WPUnit_Helpers\WP;
 
-use Gin0115\WPUnit_Helpers\Output;
 use Gin0115\WPUnit_Helpers\Utils;
 use Gin0115\WPUnit_Helpers\WP\Entities\Menu_Page_Interface;
-
 use Gin0115\WPUnit_Helpers\WP\Entities\Sub_Menu_Page_Entity;
 use Gin0115\WPUnit_Helpers\WP\Entities\Menu_Page_Entity;
 use PinkCrab\FunctionConstructors\Arrays as Arr;
 use PinkCrab\FunctionConstructors\Strings as Str;
-use PinkCrab\FunctionConstructors\Comparisons as C;
 use PinkCrab\FunctionConstructors\GeneralFunctions as F;
-
-/**
-
- */
-
 
 class Menu_Page_Inspector {
 
@@ -63,8 +55,8 @@ class Menu_Page_Inspector {
 	);
 
 	/**
-	 * Creates an instance, calls admin_meny action, sets globals
-	 * and popules the admin page array.
+	 * Creates an instance, calls admin_menu action, sets globals
+	 * and populates the admin page array.
 	 *
 	 * @return self
 	 */
@@ -97,7 +89,7 @@ class Menu_Page_Inspector {
 	 * Runs the admin_menu action if its not been called.
 	 *
 	 * If being used on a website, do not call this if in wp-admin as will
-	 * cause an infinate loop.
+	 * cause an infinite loop.
 	 *
 	 * @param bool $force If true, will rerun do_action( 'admin_menu' );
 	 * @return self
@@ -114,7 +106,7 @@ class Menu_Page_Inspector {
 	 *
 	 * @return array<int, array<string>>
 	 */
-	protected function menu_items_without_seperators(): array {
+	protected function menu_items_without_separators(): array {
 		return array_filter(
 			$this->globals['menu'] ?? array(),
 			function( array $menu_item ): bool {
@@ -132,7 +124,7 @@ class Menu_Page_Inspector {
 	 * @return self
 	 */
 	public function set_pages(): self {
-		foreach ( $this->menu_items_without_seperators()
+		foreach ( $this->menu_items_without_separators()
 			as $position => $menu_item ) {
 			$this->admin_pages[ $menu_item[2] ] =
 				$this->hydrate_parent_menu_page_entity(
