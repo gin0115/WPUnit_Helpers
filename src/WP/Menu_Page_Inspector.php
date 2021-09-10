@@ -54,8 +54,6 @@ class Menu_Page_Inspector {
 		'submenu' => null,
 	);
 
-	// HI
-
 	/**
 	 * Creates an instance, calls admin_menu action, sets globals
 	 * and populates the admin page array.
@@ -63,15 +61,15 @@ class Menu_Page_Inspector {
 	 * @param bool $force If set to true, will reset and rebuild the internal state.
 	 * @return self
 	 */
-	public static function initialise(bool $force = false): self {
+	public static function initialise( bool $force = false ): self {
 		$instance = new self();
 
-		if($force){
+		if ( $force ) {
 			$instance->reset_globals();
 		}
 
-		$instance->do_admin_menu($force);
-		$instance->set_globals($force);
+		$instance->do_admin_menu( $force );
+		$instance->set_globals( $force );
 		$instance->set_pages();
 
 		return $instance;
@@ -101,8 +99,8 @@ class Menu_Page_Inspector {
 	 */
 	public function reset_globals(): self {
 		global $menu, $submenu;
-		$menu = null;
-		$submenu = null;
+		$menu                     = null; //phpcs:ignore
+		$submenu                  = null; //phpcs:ignore
 		$this->globals['menu']    = null;
 		$this->globals['submenu'] = null;
 		return $this;
@@ -269,7 +267,6 @@ class Menu_Page_Inspector {
 	 * @return Menu_Page_Entity|null
 	 */
 	public function find_parent( string $menu_slug ): ?Menu_Page_Entity {
-		dump($this);
 		return \array_key_exists( $menu_slug, $this->admin_pages )
 			? $this->admin_pages[ $menu_slug ] : null;
 	}
