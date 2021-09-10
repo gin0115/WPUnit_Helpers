@@ -63,10 +63,10 @@ class Menu_Page_Inspector {
 	 * @return self
 	 */
 	public static function initialise(): self {
-		$instance = new self();
-		$instance->set_globals();
-		$instance->do_admin_menu();
-		$instance->set_pages();
+		$instance = new self( );
+		$instance->set_globals( );
+		$instance->do_admin_menu( );
+		$instance->set_pages( );
 		return $instance;
 	}
 
