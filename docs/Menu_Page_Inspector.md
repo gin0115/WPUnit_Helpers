@@ -84,8 +84,8 @@ $output = Output::buffer(function() use ($inspector, $page){
     $inspector->render($page);
 }); 
 
-$this->assertStringContainsString('id=\'page_foo_nonce\''); 
-$this->assertStringContainsString($page->page_title); 
+$this->assertStringContainsString('id=\'page_foo_nonce\'', $output); 
+$this->assertStringContainsString($page->page_title, $output); 
 
 ```
 
