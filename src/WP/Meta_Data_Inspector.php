@@ -38,7 +38,7 @@ class Meta_Data_Inspector {
 	 *  ]
 	 * ]
 	 *
-	 * @var array<string, array>|null
+	 * @var array<string, mixed[]>|null
 	 */
 	protected $wp_meta_keys = null;
 
@@ -99,7 +99,7 @@ class Meta_Data_Inspector {
 	 * LEVEL 2
 	 *
 	 * @param string $type
-	 * @param array<string, array> $subtypes
+	 * @param array<string, mixed[]> $subtypes
 	 * @return array<Meta_Data_Entity>
 	 */
 	protected function map_meta_by_subtype( string $type, array $subtypes ): array {
@@ -122,7 +122,7 @@ class Meta_Data_Inspector {
 	 *
 	 * @param string $type
 	 * @param string $subtype
-	 * @param array<string, array> $meta
+	 * @param array<string, mixed[]> $meta
 	 * @return array<Meta_Data_Entity>
 	 */
 	protected function map_meta_by_key( string $type, string $subtype, array $meta ): array {

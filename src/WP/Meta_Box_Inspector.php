@@ -43,7 +43,7 @@ class Meta_Box_Inspector {
 	 * Returns all the current meta_boxes, or null if not set.
 	 * Fire add_meta_boxes to add any waiting.
 	 *
-	 * @return array<string, array>|null
+	 * @return array<string, mixed[]>|null
 	 */
 	public function from_global(): ?array {
 		global $wp_meta_boxes;
@@ -81,7 +81,7 @@ class Meta_Box_Inspector {
 	 * Maps all meta boxes based on postition (2nd Level)
 	 *
 	 * @param string $post_type
-	 * @param array<string, array> $meta_boxes
+	 * @param array<string, mixed[]> $meta_boxes
 	 * @return array<Meta_Box_Entity>
 	 */
 	protected function map_position( string $post_type, array $meta_boxes ): array {
@@ -100,7 +100,7 @@ class Meta_Box_Inspector {
 	 *
 	 * @param string $post_type
 	 * @param string $position
-	 * @param array<string, array> $meta_boxes
+	 * @param array<string, mixed[]> $meta_boxes
 	 * @return array<Meta_Box_Entity>
 	 */
 	protected function map_priority( string $post_type, string $position, array $meta_boxes ): array {
@@ -120,7 +120,7 @@ class Meta_Box_Inspector {
 	 * @param string $post_type
 	 * @param string $position
 	 * @param string $priority
-	 * @param array<string, array|null> $meta_boxes
+	 * @param array<string, mixed[]|null> $meta_boxes
 	 * @return array<Meta_Box_Entity>
 	 */
 	protected function map_named_meta_boxes(
