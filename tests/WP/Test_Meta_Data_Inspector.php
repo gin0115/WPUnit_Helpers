@@ -16,9 +16,9 @@ use Gin0115\WPUnit_Helpers\WP\Meta_Data_Inspector;
 
 class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 
-	public function setup(): void {
-		parent::setup();
-		$this->reigster_mock_meta();
+	public function setUp(): void {
+		parent::setUp();
+		$this->register_mock_meta();
 	}
 
 
@@ -27,7 +27,7 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 	 *
 	 * @return void
 	 */
-	protected function reigster_mock_meta() {
+	protected function register_mock_meta() {
 		register_post_meta(
 			'post',
 			'post_meta_1',
@@ -71,7 +71,7 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 	public function test_can_populate_with_registered_meta() {
 
 		// Manual constuctor.
-		$inspector = new Meta_Data_Inspector;
+		$inspector = new Meta_Data_Inspector();
 		$inspector->set_registered_meta_data();
 		$this->assertCount( 8, $inspector->registered_meta_data );
 	}
@@ -87,7 +87,7 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 		$this->assertEquals( true, $post_meta->single );
 	}
 
-    /** @testdox Gracefully returns null if meta not found. */
+	/** @testdox Gracefully returns null if meta not found. */
 	public function test_returns_null_if_post_meta_not_found() {
 		$inspector = Meta_Data_Inspector::initialise();
 		$post_meta = $inspector->find_post_meta( 'post', 'FAKE' );
@@ -116,7 +116,7 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 		$this->assertEquals( 'float', $term_meta->value_type );
 	}
 
-    /** @testdox Gracefully returns null if term meta not found. */
+	/** @testdox Gracefully returns null if term meta not found. */
 	public function test_returns_null_if_term_meta_not_found() {
 		$inspector = Meta_Data_Inspector::initialise();
 		$term_meta = $inspector->find_term_meta( 'term', 'FAKE' );
@@ -147,23 +147,24 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 		$this->assertNotNull( $user_meta );
 	}
 
-    /** @testdox Gracefully returns null if user meta not found. */
+	/** @testdox Gracefully returns null if user meta not found. */
 	public function test_returns_null_if_user_meta_not_found() {
 		$inspector = Meta_Data_Inspector::initialise();
 		$user_meta = $inspector->find_user_meta( 'user', 'FAKE' );
 		$this->assertNull( $user_meta );
 	}
 
-    /** @testdox Can use filter to do more complex seratches. */
-    public function test_can_filter_meta_data()
-    {
-        $inspector = Meta_Data_Inspector::initialise();
-        $results = $inspector->filter(function($meta){
-            return $meta->single;
-        });
-        $keys = array( 'post_meta_1', 'post_meta_2', 'page_meta_1' );
-        foreach ( $results as $key => $meta_data ) {
+	/** @testdox Can use filter to do more complex seratches. */
+	public function test_can_filter_meta_data() {
+		$inspector = Meta_Data_Inspector::initialise();
+		$results   = $inspector->filter(
+			function( $meta ) {
+				return $meta->single;
+			}
+		);
+		$keys      = array( 'post_meta_1', 'post_meta_2', 'page_meta_1' );
+		foreach ( $results as $key => $meta_data ) {
 			$this->assertTrue( in_array( $meta_data->meta_key, $keys, true ) );
 		}
-    }
+	}
 }

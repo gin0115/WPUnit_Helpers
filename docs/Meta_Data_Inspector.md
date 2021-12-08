@@ -90,7 +90,7 @@ $inspector = Meta_Data_Inspector::initialise();
 $found = $inspector->filter(function(Meta_Data_Entity $meta): bool{
     return $meta->show_in_rest !== false;
 });
-var_dump($found); // Will have all registed meta which has defined rest schema.
+var_dump($found); // Will have all registered meta which has defined rest schema.
 ```
 
 # Object Methods & Properties
