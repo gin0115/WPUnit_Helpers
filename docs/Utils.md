@@ -18,7 +18,7 @@ A collection of assorted functions which do not really have a single place to li
  */
 public static function array_map_with( callable $function, iterable $data, ...$with ): array
 ```
-As this uses a foreach loop at its heart, any iterable can be used although care should be taken as the key isnt returned from an iterator unless ```yield 'key'=>'value';``` is used
+As this uses a foreach loop at its heart, any iterable can be used although care should be taken as the key isn't returned from an iterator unless ```yield 'key'=>'value';``` is used
 ```php
 
 $my_data = [ 'user_12342' => 'Matt Smith', 'user_23423' => 'Sally Jones' ];
@@ -105,5 +105,5 @@ get_subdirectories() allows you to get the next generate of directories either.
 $sub_directories = Utils::get_subdirectories('parent');
 print_r($sub_directories); // ['folder1', 'folder2']
 ```
-If a none existant dir path, passed, will just reutrn an empty array.
+If a none existent dir path, passed, will just return an empty array.
 

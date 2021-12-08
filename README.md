@@ -3,12 +3,11 @@ Collection of helper functions, classes and traits for using WPUnit.
 
 ![alt text](https://img.shields.io/badge/Current_Version-1.0.3-yellow.svg?style=flat " ") 
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
-
 ![](https://github.com/gin0115/WPUnit_Helpers/workflows/GitHub_CI/badge.svg " ")
 [![codecov](https://codecov.io/gh/gin0115/WPUnit_Helpers/branch/main/graph/badge.svg?token=0IFKfuE5Sf)](https://codecov.io/gh/gin0115/WPUnit_Helpers)
 
 ## Version
-**1.0.3**
+**1.0.4**
 
 ## Setup
 ```bash
@@ -86,6 +85,7 @@ var_dump($result); // ['key1 -|- value1', 'key2 -|- value2']
 
 
 ## Change log
+* 1.0.4 - Update all dependencies
 * 1.0.3 - Clear up issue with the errors found in 1.0.2 but not in dev
 * 1.0.2 - Uses menu_page_url for menu page urls and Menu_Page_Inspector given find_group function as the current naming is confusing
 * 1.0.1 - Added in Meta_Data_Inspector for checking all registered meta data.
