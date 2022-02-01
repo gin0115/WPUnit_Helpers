@@ -137,5 +137,27 @@ class WP_Dependencies {
 		}
 	}
 
+	/**
+	 * Checks if the passed plugin is installed.
+	 *
+	 * @param string $plugin
+	 * @return bool
+	 */
+	public static function plugin_installed( string $plugin, string $wp_base_path ): bool {
+		return \file_exists( $wp_base_path . '/wp-content/plugins/' . $plugin );
+	}
+
+	/**
+	 * Checks if the passed plugin is active.
+	 *
+	 * @param string $plugin
+	 * @return bool
+	 */
+	public static function plugin_active( $plugin ): bool {
+		$current = \get_option( 'active_plugins' );
+		$plugin  = \plugin_basename( \trim( $plugin ) );
+		return \in_array( $plugin, $current, true );
+	}
+
 
 }

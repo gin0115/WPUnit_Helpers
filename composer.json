@@ -23,9 +23,9 @@
         }
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0",
-        "roots/wordpress": "^5.5",
-        "wp-phpunit/wp-phpunit": "^5.0",
+        "phpunit/phpunit": "^7.0 || ^8.0",
+        "roots/wordpress": "^5.9",
+        "wp-phpunit/wp-phpunit": "^5.9",
         "symfony/var-dumper": "4.*",
         "phpstan/phpstan": "^0.12.6",
         "szepeviktor/phpstan-wordpress": "^0.7.2",
@@ -33,8 +33,7 @@
         "dealerdirect/phpcodesniffer-composer-installer": "*",
         "wp-coding-standards/wpcs": "*",
         "object-calisthenics/phpcs-calisthenics-rules": "*",
-        "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0",
-        "pcov/clobber": "^2.0"
+        "yoast/phpunit-polyfills": "^0.2.0 || ^1.0.0"
     },
     "require": {
         "php": ">=7.1.0",

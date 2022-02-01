@@ -36,7 +36,7 @@ $this->assertEquals('My Settings', $page->menu_title);
 ## Meta Data Inspector
 Allows for the checking of registered meta data, for either post, term, user, comment and any other custom meta type added.
 ```php
-$post_meta = Menu_Page_Inspector::initialise()->find_post_meta('post', 'my_key');
+$post_meta = Meta_Data_Inspector::initialise()->find_post_meta('post', 'my_key');
 $this->assertInstanceOf(Meta_Data_Entity::class, $post_meta);
 $this->assertEquals('This is my meta field', $post_meta->description);
 ```
