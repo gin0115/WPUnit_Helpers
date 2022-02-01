@@ -5,3 +5,4 @@ coverage-report
 coverage.xml
 plugin.php
 .vscode
+clover.xml

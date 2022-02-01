@@ -14,13 +14,12 @@ namespace Gin0115\WPUnit_Helpers\WP;
 
 use Exception;
 use Gin0115\WPUnit_Helpers\Utils;
-use Gin0115\WPUnit_Helpers\Output;
 
 class Test_WP_Dependencies extends \WP_UnitTestCase {
 
 	protected const TEST_PLUGIN_PATH = TEST_FIXTURES_PATH . '/FileSystem/wordpress/wp-content/plugins';
 
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		// Clear up all installed plugins.
@@ -68,4 +67,41 @@ class Test_WP_Dependencies extends \WP_UnitTestCase {
 		WP_Dependencies::activate_plugin( 'Stub_Plugin.php' );
 		$this->assertTrue( \is_plugin_active( 'Stub_Plugin.php' ) );
 	}
+
+	/** @testdox It should be possible to check if a plugin is installed. */
+	public function test_plugin_installed(): void {
+		$plugin_url = 'https://downloads.wordpress.org/plugin/sensei-lms.4.0.0.zip';
+		$wp_path    = TEST_FIXTURES_PATH . '/FileSystem/wordpress';
+
+		$this->assertFalse(
+			WP_Dependencies::plugin_installed( $plugin_url, $wp_path )
+		);
+
+		WP_Dependencies::install_remote_plugin_from_zip( $plugin_url, $wp_path );
+
+		$this->assertFalse(
+			WP_Dependencies::plugin_installed( $plugin_url, $wp_path )
+		);
+	}
+
+	/** @testdox It should be possible to check if a plugin is active. */
+	public function test_is_plugin_active(): void
+	{
+		$plugin_url = 'https://downloads.wordpress.org/plugin/sensei-lms.4.0.0.zip';
+		$plugin = 'sensei-lms/sensei-lms.php';
+		$wp_path    = TEST_FIXTURES_PATH . '/FileSystem/wordpress';
+
+		$this->assertFalse(
+			WP_Dependencies::plugin_active( $plugin )
+		);
+
+		// Install and activate.
+		WP_Dependencies::install_remote_plugin_from_zip( $plugin_url, $wp_path );
+		WP_Dependencies::activate_plugin( $plugin );
+		
+		$this->assertTrue(
+			WP_Dependencies::plugin_active( $plugin )
+		);
+	}
+
 }
