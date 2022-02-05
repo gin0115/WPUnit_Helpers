@@ -16,28 +16,24 @@ $wp_install_path = dirname( __FILE__, 2 ) . '/wordpress';
 define( 'TEST_WP_ROOT', $wp_install_path );
 
 // Inside your wpunit bootstrap file.
-tests_add_filter(
-    'muplugins_loaded',
-    function() {
-        // Attempt to download the plugin. Throws exceptions if fails, so wrap in a try/catch.
-            try {
-                WP_Dependencies::install_remote_plugin_from_zip(
-                    'https://some.url/file.zip', 
-                    TEST_WP_ROOT
-                );
-            } catch (\Throwable $th) {
-                print "Failed to install plugin";
-                print $th->getMessage();
-                print "Cancelling setup";
-                exit;
-	   }
-        }
+try {
+    // Attempt to download the plugin. Throws exceptions if fails, so wrap in a try/catch.
+    WP_Dependencies::install_remote_plugin_from_zip(
+        'https://some.url/file.zip', 
+        TEST_WP_ROOT
+    );
+} catch (\Throwable $th) {
+    print "Failed to install plugin";
+    print $th->getMessage();
+    print "Cancelling setup";
+    exit;
+}
 
-    // Once installed, its just a case of activating and runing any setup needed.
-    WP_Dependencies::activate_plugin('/achme_plugin/plugin.php');
-    add_option('ache_setting', 1);
-    add_option('ache_setting_2', 'disabled');
-);
+
+// Once installed, its just a case of activating and runing any setup needed.
+WP_Dependencies::activate_plugin('/achme_plugin/plugin.php');
+add_option('ache_setting', 1);
+add_option('ache_setting_2', 'disabled');
 ```
 ### Activate Plugins
 
