@@ -19,7 +19,7 @@ $inspector = $inspector->set_registered_meta_data(true);
 ```
 *This will rebuild the internal state of the inspector. WP Will not included your meta again, so you dont need to clear the internal state before running.*
 
-** Post Types
+## Post Types
 The most common form of meta used in WP is post meta. The Inspector will allow you to check if a meta key has been registered against a post type and to get all meta fields registered for any post type.
 
 
@@ -46,6 +46,7 @@ foreach($meta as $value){
     $this->assertInArray($meta->meta_key, $expected);
 }
 ```
+## Taxonomy/Term
 
 ### find_term_meta(string $taxonomy, string $meta_key): ? Meta_Data_Entity
 You can search for a registered term meta key, if found will return a populated Meta Data Entity or null if not found.
@@ -71,6 +72,7 @@ foreach($meta as $value){
     $this->assertInArray($meta->meta_key, $expected);
 }
 ```
+## User
 
 ### find_user_meta(string $meta_key): ? Meta_Data_Entity
 You can search for a registered user meta key, if found will return a populated Meta Data Entity or null if not found.
@@ -82,6 +84,7 @@ $found = $inspector->find_user_meta('users_account_ref');
 var_dump($found); // Either instance of Meta_Data_Entity or null if not found.
 $this->assertNotNull($found);
 ```
+## Comment
 
 ### find_comment_meta(string $meta_key): ? Meta_Data_Entity
 You can search for a registered comment meta key, if found will return a populated Meta Data Entity or null if not found.
