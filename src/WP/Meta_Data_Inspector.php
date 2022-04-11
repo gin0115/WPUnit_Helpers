@@ -218,12 +218,32 @@ class Meta_Data_Inspector {
 	}
 
 	/**
-	 * Returns the first matcing user meta found with the
+	 * Returns the first matching user meta found with the
 	 * defined key.
+	 *
+	 * @param string $meta_key
+	 * @return Meta_Data_Entity|null
 	 */
 	public function find_user_meta( string $meta_key ): ?Meta_Data_Entity {
 		$results = Arr\filterAnd(
 			F\propertyEquals( 'meta_type', 'user' ),
+			F\propertyEquals( 'meta_key', $meta_key )
+		)( $this->registered_meta_data );
+		return count( $results ) === 0
+			? null
+			: reset( $results );
+	}
+
+	/**
+	 * Returns the first matching comment meta found with the
+	 * defined key.
+	 *
+	 * @param string $meta_key
+	 * @return Meta_Data_Entity|null
+	 */
+	public function find_comment_meta( string $meta_key ): ?Meta_Data_Entity {
+		$results = Arr\filterAnd(
+			F\propertyEquals( 'meta_type', 'comment' ),
 			F\propertyEquals( 'meta_key', $meta_key )
 		)( $this->registered_meta_data );
 		return count( $results ) === 0

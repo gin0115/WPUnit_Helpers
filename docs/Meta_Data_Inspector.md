@@ -15,7 +15,7 @@ $inspector = Meta_Data_Inspector::initialise();
 
 **You can repopulate the internal state of the inspector from the globals by calling**
 ```php
-$inspetor = $inspector->set_registered_meta_data(true);
+$inspector = $inspector->set_registered_meta_data(true);
 ```
 *This will rebuild the internal state of the inspector. WP Will not included your meta again, so you dont need to clear the internal state before running.*
 
@@ -72,13 +72,24 @@ foreach($meta as $value){
 }
 ```
 
-### find_term_meta(string $meta_key): ? Meta_Data_Entity
+### find_user_meta(string $meta_key): ? Meta_Data_Entity
 You can search for a registered user meta key, if found will return a populated Meta Data Entity or null if not found.
 
 ```php 
-// Find based on  meta key
+// Find based on user meta key
 $inspector = Meta_Data_Inspector::initialise();
 $found = $inspector->find_user_meta('users_account_ref');
+var_dump($found); // Either instance of Meta_Data_Entity or null if not found.
+$this->assertNotNull($found);
+```
+
+### find_comment_meta(string $meta_key): ? Meta_Data_Entity
+You can search for a registered comment meta key, if found will return a populated Meta Data Entity or null if not found.
+
+```php 
+// Find based on comment meta key
+$inspector = Meta_Data_Inspector::initialise();
+$found = $inspector->find_comment_meta('commenter_account_ref');
 var_dump($found); // Either instance of Meta_Data_Entity or null if not found.
 $this->assertNotNull($found);
 ```

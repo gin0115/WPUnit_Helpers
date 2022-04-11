@@ -59,6 +59,8 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 		register_term_meta( 'other_tax', 'term3', array() );
 		register_meta( 'user', 'user1', array() );
 		register_meta( 'user', 'user2', array() );
+		register_meta( 'comment', 'comment1', array() );
+		register_meta( 'comment', 'comment2', array() );
 	}
 
 	/** @testdox Can create inspector from static contructor */
@@ -73,7 +75,7 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 		// Manual constuctor.
 		$inspector = new Meta_Data_Inspector();
 		$inspector->set_registered_meta_data();
-		$this->assertCount( 8, $inspector->registered_meta_data );
+		$this->assertCount( 10, $inspector->registered_meta_data );
 	}
 
 	/** @testdox Can find post meta based on its key */
@@ -152,6 +154,23 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 		$inspector = Meta_Data_Inspector::initialise();
 		$user_meta = $inspector->find_user_meta( 'user', 'FAKE' );
 		$this->assertNull( $user_meta );
+	}
+
+	/** @testdox Can find comment meta based on the key */
+	public function test_find_comment_meta() {
+		$inspector    = Meta_Data_Inspector::initialise();
+		$comment_meta = $inspector->find_comment_meta( 'comment1' );
+		$this->assertNotNull( $comment_meta );
+
+		$comment_meta = $inspector->find_comment_meta( 'comment2' );
+		$this->assertNotNull( $comment_meta );
+	}
+
+	/** @testdox Gracefully returns null if comment meta not found. */
+	public function test_returns_null_if_comment_meta_not_found() {
+		$inspector    = Meta_Data_Inspector::initialise();
+		$comment_meta = $inspector->find_comment_meta( 'comment', 'FAKE' );
+		$this->assertNull( $comment_meta );
 	}
 
 	/** @testdox Can use filter to do more complex seratches. */
