@@ -1,60 +1,78 @@
 # WPUnit_Helpers
+
 Collection of helper functions, classes and traits for using WPUnit. 
 
-![alt text](https://img.shields.io/badge/Current_Version-1.0.5-yellow.svg?style=flat " ") 
+![alt text](https://img.shields.io/badge/Current_Version-1.0.5-yellow.svg?style=flat " ")
+
+ 
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 ![](https://github.com/gin0115/WPUnit_Helpers/workflows/GitHub_CI/badge.svg " ")
 [![codecov](https://codecov.io/gh/gin0115/WPUnit_Helpers/branch/main/graph/badge.svg?token=0IFKfuE5Sf)](https://codecov.io/gh/gin0115/WPUnit_Helpers)
 
 ## Version
-**1.0.5**
+
+**1.1.0**
 
 ## Setup
+
 ```bash
 $ composer require --dev gin0115/wpunit-helpers
 ```
 
-
 ## Meta Box Inspector
+
 Check if meta boxes have been registered correctly, check all values and render the view callback.
+
 ```php
 $box = Meta_Box_Inspector::initialise()->find('my_meta_box_key');
 $this->assertInstanceOf(Meta_Box_Entity::class, $box);
 $this->assertEquals('My Title', $box->title);
 ```
+
 **[Read More](docs/Meta_Box_Inspector.md)**
 
 ## Menu Page Inspector
+
 Allows for the checking of added pages and sub pages. Can be searched to ensure pages are added as expected and can render the pages content, for intergration style tests. Allows for testing parent and child(sub) pages.
+
 ```php
 $page = Menu_Page_Inspector::initialise()->find_parent_page('parent_page_slug');
 $this->assertInstanceOf(Menu_Page_Entity::class, $page);
 $this->assertEquals('My Settings', $page->menu_title);
 ```
+
 **[Read More](docs/Menu_Page_Inspector.md)**
 
 ## Meta Data Inspector
+
 Allows for the checking of registered meta data, for either post, term, user, comment and any other custom meta type added.
+
 ```php
 $post_meta = Meta_Data_Inspector::initialise()->find_post_meta('post', 'my_key');
 $this->assertInstanceOf(Meta_Data_Entity::class, $post_meta);
 $this->assertEquals('This is my meta field', $post_meta->description);
 ```
+
 **[Read More](docs/Meta_Data_Inspector.md)**
 
 ## WP Dependencies
+
 Allows for the quick and simple installation of themes and plugins from remote sources.
+
 ```php
 WP_Dependencies::install_remote_plugin_from_zip(
     'https://the-url.tc/woocommerce.zip', 'path/to/test_wp/root/'
 );
 WP_Dependencies::activate_plugin('woocommerce/woocommerce.php');
 ```
+
 **[Read More](docs/WP_Dependencies.md)**
 
 ## Object (Reflection wrappers)
+
 Reflection is super useful in testing, especially if you cant access internal properties and methods to create your tests. Or you need to mock parts of the process, which are otherwise not accessible (internal WP States etc).
 _These also work on static methods/properties_
+
 ```php
 //  Access protected & privates properties.
 Objects::get_property($instnace, 'property');
@@ -63,28 +81,67 @@ Objects::set_property($instnace, 'property', 'new value');
 // Invoke private or protected method.
 Objects::invoke_method($instance, 'method', ['the', 'args']);
 ```
+
 **[Read More](docs/Objects.md)**
 
 ## Utils 
+
 A collection of functions that have no other real place.
 ```php 
 // array_map_with allows array_map to be done with access to the key and as many other
 // values you wish to pass.
 $result = Utils::array_map_with( 
+
     function($key, $value, $spacer){
         return $key . $spacer . $value;
     }, 
     ['key1'=>'value1', 'key2' => 'value2'],
     ' -|- '
-);
+
+); 
 var_dump($result); // ['key1 -|- value1', 'key2 -|- value2']
+
 ```
 **[Read More](docs/Utils.md)**
 
 ## Output
 
+## Logable WPDB
+
+This simple class which extends `wpdb` can be used for Application tests where you need to either mock the return from a WPDB call or log all wpdb calls made.
+
+> Supports all public and common methods.
+
+```php
+$wpdb = new Logable_WPDB();
+
+// Set a return value.
+$wpdb->then_return = 1;
+
+// Mock an insert 
+$result = $wpdb->insert('table_name', ['col1'=>'value1'], ['%s']);
+
+// Get back the set return value
+var_dump($result);
+
+// Access the useage log
+$log = $wpdb->usage_log;
+var_dump($log);
+/**
+ * ['insert' => 
+ *   [0] => [
+ *     'table' => 'table_name',
+ *     'data' => ['col1'=>'value1'],
+ *     'format' => ['%s'],
+ *   ]
+ * ]
+ */
+```
+**[Read More](docs/Utils.md)**
 
 ## Change log
+
+* 1.1.0 - Added Logable WPDB, Extended Meta Data Inspector to make use of Comment Meta, Extended to PHP8.1 Support
 * 1.0.5 - Update dependencies for php8, also added `plugin_installed` and `plugin_active` to `WP_Dependencies`
 * 1.0.4 - Update all dependencies
 * 1.0.3 - Clear up issue with the errors found in 1.0.2 but not in dev
