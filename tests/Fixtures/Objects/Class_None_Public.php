@@ -43,11 +43,11 @@ class Class_None_Public {
 	public $public_prop = self::RESULTS['public_prop'];
 
 	// STATIC PROPERTIES
-	protected $protected_static_prop = self::RESULTS['protected_static_prop'];
+	protected static $protected_static_prop = self::RESULTS['protected_static_prop'];
 	/** @var string */
-	private $private_static_prop = self::RESULTS['private_static_prop'];
+	private static $private_static_prop = self::RESULTS['private_static_prop'];
 	/** @var string */
-	public $public_static_prop = self::RESULTS['public_static_prop'];
+	public static $public_static_prop = self::RESULTS['public_static_prop'];
 
 	// INSTANCED METHODS
 	/** @return string */
