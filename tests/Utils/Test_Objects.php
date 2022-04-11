@@ -26,8 +26,10 @@ class Test_Objects extends TestCase {
 		$this->mock_class = new Class_None_Public();
 	}
 
-
-
+	public function tearDown(): void {
+		parent::tearDown();
+		unset( $this->mock_class );
+	}
 
 	/** PROPERTY GETTERSc */
 
@@ -55,7 +57,7 @@ class Test_Objects extends TestCase {
 		);
 	}
 
-		/** @testdox Can get a public static property using get_property() */
+	/** @testdox Can get a public static property using get_property() */
 	public function test_get_public_static_property() {
 		$this->assertSame(
 			Class_None_Public::RESULTS['public_static_prop'],
@@ -79,8 +81,6 @@ class Test_Objects extends TestCase {
 		);
 	}
 
-
-
 	/** PROPERTY SETTERS */
 
 	/** @testdox Can set a public property using set_property() */
@@ -101,34 +101,44 @@ class Test_Objects extends TestCase {
 		$this->assertSame( '__!private_prop!__', Objects::get_property( $this->mock_class, 'private_prop' ) );
 	}
 
-		/** @testdox Can set a public static property using set_property() */
+	/** @testdox Can set a public static property using set_property() */
 	public function test_set_public_static_property() {
 		Objects::set_property( $this->mock_class, 'public_static_prop', '__!public_static_prop!__' );
 		$this->assertSame( '__!public_static_prop!__', Objects::get_property( $this->mock_class, 'public_static_prop' ) );
+
+		// Reset the property
+		Objects::set_property( $this->mock_class, 'public_static_prop', 'Public Static Property' );
+		$this->assertSame( 'Public Static Property', Objects::get_property( $this->mock_class, 'public_static_prop' ) );
 	}
 
 	/** @testdox Can set a protected static property using set_property() */
 	public function test_set_protected_static_property() {
 		Objects::set_property( $this->mock_class, 'protected_static_prop', '__!protected_static_prop!__' );
 		$this->assertSame( '__!protected_static_prop!__', Objects::get_property( $this->mock_class, 'protected_static_prop' ) );
+
+		// Reset the property
+		Objects::set_property( $this->mock_class, 'protected_static_prop', 'Protected Static Property' );
+		$this->assertSame( 'Protected Static Property', Objects::get_property( $this->mock_class, 'protected_static_prop' ) );
+
 	}
 
 	/** @testdox Can set a private static property using set_property() */
 	public function test_set_private_static_property() {
 		Objects::set_property( $this->mock_class, 'private_static_prop', '__!private_static_prop!__' );
 		$this->assertSame( '__!private_static_prop!__', Objects::get_property( $this->mock_class, 'private_static_prop' ) );
+
+		// Reset the property
+		Objects::set_property( $this->mock_class, 'private_static_prop', 'Private Static Property' );
+		$this->assertSame( 'Private Static Property', Objects::get_property( $this->mock_class, 'private_static_prop' ) );
 	}
-
-
-
 
 	/** INVOKE METHODS */
 
-		/** @testdox Can invoke a public method using invoke_method() */
+	/** @testdox Can invoke a public method using invoke_method() */
 	public function test_invoke_public_property() {
 		$this->assertSame(
 			Class_None_Public::RESULTS['public_method'] . '__FF__',
-			Objects::invoke_method( $this->mock_class, 'public_method', ['__FF__'] )
+			Objects::invoke_method( $this->mock_class, 'public_method', array( '__FF__' ) )
 		);
 	}
 
@@ -136,7 +146,7 @@ class Test_Objects extends TestCase {
 	public function test_invoke_protected_property() {
 		$this->assertSame(
 			Class_None_Public::RESULTS['protected_method'] . '__FF__',
-			Objects::invoke_method( $this->mock_class, 'protected_method', ['__FF__'] )
+			Objects::invoke_method( $this->mock_class, 'protected_method', array( '__FF__' ) )
 		);
 	}
 
@@ -144,15 +154,15 @@ class Test_Objects extends TestCase {
 	public function test_invoke_private_property() {
 		$this->assertSame(
 			Class_None_Public::RESULTS['private_method'] . '__FF__',
-			Objects::invoke_method( $this->mock_class, 'private_method', ['__FF__'] )
+			Objects::invoke_method( $this->mock_class, 'private_method', array( '__FF__' ) )
 		);
 	}
 
-		/** @testdox Can invoke a public method using invoke_mthod() */
+	/** @testdox Can invoke a public method using invoke_mthod() */
 	public function test_invoke_public_static_property() {
 		$this->assertSame(
 			Class_None_Public::RESULTS['public_static_method'] . '__FF__',
-			Objects::invoke_method( $this->mock_class, 'public_static_method', ['__FF__'] )
+			Objects::invoke_method( $this->mock_class, 'public_static_method', array( '__FF__' ) )
 		);
 	}
 
@@ -160,7 +170,7 @@ class Test_Objects extends TestCase {
 	public function test_invoke_protected_static_property() {
 		$this->assertSame(
 			Class_None_Public::RESULTS['protected_static_method'] . '__FF__',
-			Objects::invoke_method( $this->mock_class, 'protected_static_method', ['__FF__'] )
+			Objects::invoke_method( $this->mock_class, 'protected_static_method', array( '__FF__' ) )
 		);
 	}
 
@@ -168,7 +178,7 @@ class Test_Objects extends TestCase {
 	public function test_invoke_private_static_property() {
 		$this->assertSame(
 			Class_None_Public::RESULTS['private_static_method'] . '__FF__',
-			Objects::invoke_method( $this->mock_class, 'private_static_method', ['__FF__'] )
+			Objects::invoke_method( $this->mock_class, 'private_static_method', array( '__FF__' ) )
 		);
 	}
 
