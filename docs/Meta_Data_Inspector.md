@@ -97,6 +97,9 @@ var_dump($found); // Either instance of Meta_Data_Entity or null if not found.
 $this->assertNotNull($found);
 ```
 
+# Object Methods & Properties
+
+
 ### filter(callable $filter): array<Meta_Data_Entity>
 This allows for creating more complex queries against all registered meta data.
 ```php 
@@ -107,6 +110,5 @@ $found = $inspector->filter(function(Meta_Data_Entity $meta): bool{
 var_dump($found); // Will have all registered meta which has defined rest schema.
 ```
 
-# Object Methods & Properties
-
-@todo
+### set_registered_meta_data(bool $force_reset = false): Meta_Data_Inspector
+This grabs all current meta data from the WP Globals and sets to the inspector. Passing `TRUE` will reset all the internal listings from Globals. Should only be forced if you need to reset the internal state to check something was added afterwards.
