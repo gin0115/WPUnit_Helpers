@@ -8,7 +8,8 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     paths:
         - %currentWorkingDirectory%/src/
-    excludes_analyse:
+    excludePaths:
         - %currentWorkingDirectory%/tests/*
+        - %currentWorkingDirectory%/src/WP/WP_UnitTestCase/*
     bootstrapFiles:
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php

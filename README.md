@@ -2,14 +2,14 @@
 
 Collection of helper functions, classes and traits for using WPUnit. 
 
-![alt text](https://img.shields.io/badge/Current_Version-1.0.6-yellow.svg?style=flat " ")
+![alt text](https://img.shields.io/badge/Current_Version-1.0.7-yellow.svg?style=flat " ") 
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 ![](https://github.com/gin0115/WPUnit_Helpers/workflows/GitHub_CI/badge.svg " ")
 [![codecov](https://codecov.io/gh/gin0115/WPUnit_Helpers/branch/main/graph/badge.svg?token=0IFKfuE5Sf)](https://codecov.io/gh/gin0115/WPUnit_Helpers)
 
 ## Version
 
-**1.0.6**
+**1.0.7**
 
 ## Setup
 
@@ -138,7 +138,7 @@ var_dump($log);
 **[Read More](docs/Utils.md)**
 
 ## Change log
-
+* 1.0.7 - Updated dependencies for Function_Constructors and testing.
 * 1.0.6 - Added Logable WPDB, Extended Meta Data Inspector to make use of Comment Meta, Extended to PHP8.1 Support
 * 1.0.5 - Update dependencies for php8, also added `plugin_installed` and `plugin_active` to `WP_Dependencies`
 * 1.0.4 - Update all dependencies
