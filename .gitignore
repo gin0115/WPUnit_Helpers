@@ -7,3 +7,5 @@ plugin.php
 .vscode
 clover.xml
 .phpunit.result.cache
+
+tests/.env

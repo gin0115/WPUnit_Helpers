@@ -12,6 +12,15 @@ require_once dirname( __DIR__ ) . '/vendor/autoload.php';
 // Give access to tests_add_filter() function.
 require_once getenv( 'WP_PHPUNIT__DIR' ) . '/includes/functions.php';
 
+// Load all environment variables into $_ENV
+try {
+	$dotenv = Dotenv\Dotenv::createUnsafeImmutable( __DIR__ );
+	$dotenv->load();
+} catch (\Throwable $th) {
+	// Do nothing if fails to find env as not used in pipeline.
+	die('Failed to load .env file');
+}
+
 // Set the fixtures path as a const.
 define( 'TEST_FIXTURES_PATH', __DIR__ . '/Fixtures/' );
 define( 'TEST_WP_INSTANCE_PATH', dirname( __DIR__, 1 ) . '/wordpress' );
