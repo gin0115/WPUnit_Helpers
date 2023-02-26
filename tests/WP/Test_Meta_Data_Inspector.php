@@ -18,6 +18,10 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
+
+		// Reset the registered meta data.
+		$GLOBALS['wp_meta_keys'] = array();
+
 		$this->register_mock_meta();
 	}
 
@@ -75,7 +79,6 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 		// Manual constuctor.
 		$inspector = new Meta_Data_Inspector();
 		$inspector->set_registered_meta_data();
-		dump( $inspector->registered_meta_data );
 		$this->assertCount( 10, $inspector->registered_meta_data );
 	}
 
