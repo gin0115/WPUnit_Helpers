@@ -153,7 +153,8 @@ These traits are designed to be used with the WP Unit TestCase. They provide a n
 **[Read More](docs/WP_Unit_TestCase_Helper_Traits.md)**
 
 ## Change log
-* 1.0.8 - Replaced all instance of pipe() from Function_Constructors with compose() from Function_Constructors.
+* 1.1.1 - Updates dependencies, added in missing docs, missing tests and renamed the `array_map_with` to `iterable_map_with` to better reflect the use case.
+* 1.1.0 - Replaced all instance of pipe() from Function_Constructors with compose() from Function_Constructors.
 * 1.0.7 - Updated dependencies for Function_Constructors and testing.
 * 1.0.6 - Added Logable WPDB, Extended Meta Data Inspector to make use of Comment Meta, Extended to PHP8.1 Support
 * 1.0.5 - Update dependencies for php8, also added `plugin_installed` and `plugin_active` to `WP_Dependencies`
