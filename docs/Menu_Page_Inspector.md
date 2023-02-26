@@ -147,13 +147,6 @@ public function set_globals( bool $force = false ): self
 /**
  * Runs the admin_menu action if its not been called.
  *
- * @return self
- */
-public function do_admin_menu(): self
-
-/**
- * Runs the admin_menu action if its not been called.
- *
  * @param bool $force If true, will rerun do_action( 'admin_menu' );
  * @return self
  */

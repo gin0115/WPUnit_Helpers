@@ -83,7 +83,7 @@ class Meta_Data_Inspector {
 	 */
 	protected function map_meta_by_type(): self {
 		$this->registered_meta_data = Arr\flattenByN( 1 )(
-			Utils::array_map_with(
+			Utils::iterable_map_with(
 				function ( $type, $meta_data ) {
 					return $this->map_meta_by_subtype( $type, $meta_data );
 				},
@@ -104,7 +104,7 @@ class Meta_Data_Inspector {
 	 */
 	protected function map_meta_by_subtype( string $type, array $subtypes ): array {
 		return Arr\flattenByN( 1 )(
-			Utils::array_map_with(
+			Utils::iterable_map_with(
 				function ( string $subtype, array $meta_data, string $type ): array {
 					return $this->map_meta_by_key( $type, $subtype, $meta_data );
 				},
@@ -127,7 +127,7 @@ class Meta_Data_Inspector {
 	 */
 	protected function map_meta_by_key( string $type, string $subtype, array $meta ): array {
 		return Arr\flattenByN( 1 )(
-			Utils::array_map_with(
+			Utils::iterable_map_with(
 				function ( string $meta_key, array $meta_details, string $type, string $subtype ): Meta_Data_Entity {
 					$entity                    = new Meta_Data_Entity();
 					$entity->meta_type         = $type;

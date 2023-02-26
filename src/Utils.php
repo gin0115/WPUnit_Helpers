@@ -24,10 +24,10 @@ class Utils {
 	 *
 	 * @param callable $function
 	 * @param iterable<mixed> $data
-	 * @param mixed ...$with
+	 * @param mixed ...$with Values to pass to the callback function. function($key, $value, ...$with)
 	 * @return array<int, mixed>
 	 */
-	public static function array_map_with( callable $function, iterable $data, ...$with ): array {
+	public static function iterable_map_with( callable $function, iterable $data, ...$with ): array {
 		$return = array();
 		foreach ( $data as $key => $value ) {
 			$return[] = $function( $key, $value, ...$with );
