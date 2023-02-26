@@ -109,6 +109,10 @@ var_dump($result); // ['key1 -|- value1', 'key2 -|- value2']
 
 ## Output
 
+There are a number of methods that can be used to capture output from a function or method. This is useful for testing output from a function or method.
+
+**[Read More](docs/Output.md)**
+
 ## Logable WPDB
 
 This simple class which extends `wpdb` can be used for Application tests where you need to either mock the return from a WPDB call or log all wpdb calls made.
@@ -141,6 +145,12 @@ var_dump($log);
  */
 ```
 **[Read More](docs/Utils.md)**
+
+## WP Unit TestCase Helper Traits
+
+These traits are designed to be used with the WP Unit TestCase. They provide a number of helper functions to make testing easier.
+
+**[Read More](docs/WP_Unit_TestCase_Helper_Traits.md)**
 
 ## Change log
 * 1.0.8 - Replaced all instance of pipe() from Function_Constructors with compose() from Function_Constructors.
