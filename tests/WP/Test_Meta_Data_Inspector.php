@@ -18,6 +18,10 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
+
+		// Reset the registered meta data.
+		$GLOBALS['wp_meta_keys'] = array();
+
 		$this->register_mock_meta();
 	}
 

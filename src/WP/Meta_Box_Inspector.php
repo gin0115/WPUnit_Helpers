@@ -162,7 +162,7 @@ class Meta_Box_Inspector {
 	public function for_post_types( string ...$post_type ): array {
 		return array_filter(
 			$this->meta_boxes,
-			F\pipe( F\getProperty( 'post_type' ), C\isEqualIn( $post_type ) )
+			F\compose( F\getProperty( 'post_type' ), C\isEqualIn( $post_type ) )
 		);
 	}
 
