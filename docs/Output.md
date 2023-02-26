@@ -18,9 +18,9 @@ $this->assertEquals('Hello World', $output);
 
 > This is useful for testing the output of a function, or for testing the output of a view or a wp function call.
 
-### Output::println( $callback ): void
+### Output::println( $value ): void
 
-This function allows for the output of a string or strinable variable to be printed, with a new line at the end (PHP_EOL).
+This function allows for the output of a string or stringable variable to be printed, with a new line at the end (PHP_EOL).
 
 ```php
 Output::println('Hello World');
