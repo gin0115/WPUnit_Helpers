@@ -78,12 +78,12 @@ class Foo {
 
 
 $instance = new Foo(); 
-Objects::invoke_method($instance, 'invoked'); // from public_method invoked
-Objects::invoke_method($instance, 'invoked'); // from protected_method invoked
-Objects::invoke_method($instance, 'invoked'); // from private_method invoked
+Objects::invoke_method($instance, 'public_method'); // from public_method invoked
+Objects::invoke_method($instance, 'protected_method'); // from protected_method invoked
+Objects::invoke_method($instance, 'private_method'); // from private_method invoked
 
-Objects::invoke_method($instance, 'invoked'); // from public_static_method invoked
-Objects::invoke_method($instance, 'invoked'); // from protected_static_method invoked
-Objects::invoke_method($instance, 'invoked'); // from private_static_method invoked
+Objects::invoke_method($instance, 'public_static_method'); // from public_static_method invoked
+Objects::invoke_method($instance, 'protected_static_method'); // from protected_static_method invoked
+Objects::invoke_method($instance, 'private_static_method'); // from private_static_method invoked
 
 ```
