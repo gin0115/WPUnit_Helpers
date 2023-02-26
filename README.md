@@ -109,6 +109,10 @@ var_dump($result); // ['key1 -|- value1', 'key2 -|- value2']
 
 ## Output
 
+There are a number of methods that can be used to capture output from a function or method. This is useful for testing output from a function or method.
+
+**[Read More](docs/Output.md)**
+
 ## Logable WPDB
 
 This simple class which extends `wpdb` can be used for Application tests where you need to either mock the return from a WPDB call or log all wpdb calls made.
