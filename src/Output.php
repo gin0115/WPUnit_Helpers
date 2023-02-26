@@ -15,7 +15,7 @@ namespace Gin0115\WPUnit_Helpers;
 class Output {
 
 	/**
-	 * Prints a printable and strarts a new line.
+	 * Prints a printable and starts a new line.
 	 *
 	 * @param mixed $arg
 	 * @return void
