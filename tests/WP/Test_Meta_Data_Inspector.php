@@ -75,6 +75,7 @@ class Test_Meta_Data_Inspector extends \WP_UnitTestCase {
 		// Manual constuctor.
 		$inspector = new Meta_Data_Inspector();
 		$inspector->set_registered_meta_data();
+		dump( $inspector->registered_meta_data );
 		$this->assertCount( 10, $inspector->registered_meta_data );
 	}
 

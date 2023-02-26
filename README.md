@@ -6,10 +6,11 @@ Collection of helper functions, classes and traits for using WPUnit.
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 ![](https://github.com/gin0115/WPUnit_Helpers/workflows/GitHub_CI/badge.svg " ")
 [![codecov](https://codecov.io/gh/gin0115/WPUnit_Helpers/branch/main/graph/badge.svg?token=0IFKfuE5Sf)](https://codecov.io/gh/gin0115/WPUnit_Helpers)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5d49d0d2ac54b59c84d3/maintainability)](https://codeclimate.com/github/gin0115/WPUnit_Helpers/maintainability)
 
 ## Version
 
-**1.0.7**
+**1.0.8**
 
 ## Setup
 
@@ -138,6 +139,7 @@ var_dump($log);
 **[Read More](docs/Utils.md)**
 
 ## Change log
+* 1.0.8 - Replaced all instance of pipe() from Function_Constructors with compose() from Function_Constructors.
 * 1.0.7 - Updated dependencies for Function_Constructors and testing.
 * 1.0.6 - Added Logable WPDB, Extended Meta Data Inspector to make use of Comment Meta, Extended to PHP8.1 Support
 * 1.0.5 - Update dependencies for php8, also added `plugin_installed` and `plugin_active` to `WP_Dependencies`
