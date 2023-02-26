@@ -146,6 +146,12 @@ var_dump($log);
 ```
 **[Read More](docs/Utils.md)**
 
+## WP Unit TestCase Helper Traits
+
+These traits are designed to be used with the WP Unit TestCase. They provide a number of helper functions to make testing easier.
+
+**[Read More](docs/WP_Unit_TestCase_Helper_Traits.md)**
+
 ## Change log
 * 1.0.8 - Replaced all instance of pipe() from Function_Constructors with compose() from Function_Constructors.
 * 1.0.7 - Updated dependencies for Function_Constructors and testing.
