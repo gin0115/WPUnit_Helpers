@@ -207,7 +207,7 @@ class Menu_Page_Inspector {
 	 * @return array<Sub_Menu_Page_Entity>
 	 */
 	protected function hydrate_child_menu_page_entity( array $children, string $parent_key ): array {
-		return Utils::array_map_with(
+		return Utils::iterable_map_with(
 			function( $key, $child, $parent_key ) {
 				$page              = new Sub_Menu_Page_Entity();
 				$page->menu_slug   = $child[2];

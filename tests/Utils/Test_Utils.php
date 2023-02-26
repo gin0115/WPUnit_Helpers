@@ -28,7 +28,7 @@ class Test_Utils extends TestCase {
 		$static1 = 'Arr Static 1';
 		$static2 = 'Arr Static 2';
 
-		$result = Utils::array_map_with(
+		$result = Utils::iterable_map_with(
 			function( $key, $value, $static1, $static2 ): string {
 				return \sprintf( '%s -> %s | %s | %s', $key, $value, $static1, $static2 );
 			},
@@ -56,7 +56,7 @@ class Test_Utils extends TestCase {
 		$static1 = 'Itr Static 1';
 		$static2 = 'Itr Static 2';
 
-		$result = Utils::array_map_with(
+		$result = Utils::iterable_map_with(
 			function( $key, $value, $static1, $static2 ): string {
 				return \sprintf( '%s -> %s | %s | %s', $key, $value, $static1, $static2 );
 			},
@@ -79,7 +79,7 @@ class Test_Utils extends TestCase {
 			yield 'key3' => 'value3';
 		};
 
-		$result = Utils::array_map_with(
+		$result = Utils::iterable_map_with(
 			function( $key, $value ): string {
 				return \sprintf( '%s -> %s ', $key, $value );
 			},

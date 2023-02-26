@@ -129,7 +129,7 @@ class Meta_Box_Inspector {
 		string $position,
 		string $priority
 	): array {
-		return Utils::array_map_with(
+		return Utils::iterable_map_with(
 			function( $name, $meta_box_details, $post_type, $position, $priority ): Meta_Box_Entity {
 				$meta_box            = new Meta_Box_Entity();
 				$meta_box->post_type = $post_type;

@@ -91,9 +91,9 @@ Objects::invoke_method($instance, 'method', ['the', 'args']);
 
 A collection of functions that have no other real place.
 ```php 
-// array_map_with allows array_map to be done with access to the key and as many other
+// iterable_map_with allows array_map to be done with access to the key and as many other
 // values you wish to pass.
-$result = Utils::array_map_with( 
+$result = Utils::iterable_map_with( 
 
     function($key, $value, $spacer){
         return $key . $spacer . $value;
