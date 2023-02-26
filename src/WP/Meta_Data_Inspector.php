@@ -174,10 +174,10 @@ class Meta_Data_Inspector {
 	 * @return array<Meta_Data_Entity>
 	 */
 	public function for_post_types( string ...$post_types ): array {
-		return F\pipe(
+		return F\compose(
 			Arr\filterAnd(
 				F\propertyEquals( 'meta_type', 'post' ),
-				F\pipe( F\getProperty( 'sub_type' ), C\isEqualIn( $post_types ) )
+				F\compose( F\getProperty( 'sub_type' ), C\isEqualIn( $post_types ) )
 			),
 			'array_values'
 		)( $this->registered_meta_data );
@@ -212,7 +212,7 @@ class Meta_Data_Inspector {
 		return array_values(
 			Arr\filterAnd(
 				F\propertyEquals( 'meta_type', 'term' ),
-				F\pipe( F\getProperty( 'sub_type' ), C\isEqualIn( $taxonomies ) )
+				F\compose( F\getProperty( 'sub_type' ), C\isEqualIn( $taxonomies ) )
 			)( $this->registered_meta_data )
 		);
 	}
