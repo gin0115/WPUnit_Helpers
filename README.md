@@ -2,6 +2,14 @@
 
 Collection of helper functions, classes and traits for using WPUnit. 
 
+[![Latest Stable Version](http://poser.pugx.org/gin0115/wpunit-helpers/v)](https://packagist.org/packages/gin0115/wpunit-helpers)
+[![Total Downloads](http://poser.pugx.org/gin0115/wpunit-helpers/downloads)](https://packagist.org/packages/gin0115/wpunit-helpers)
+[![License](http://poser.pugx.org/gin0115/wpunit-helpers/license)](https://packagist.org/packages/gin0115/wpunit-helpers)
+[![PHP Version Require](http://poser.pugx.org/gin0115/wpunit-helpers/require/php)](https://packagist.org/packages/gin0115/wpunit-helpers)
+![GitHub contributors](https://img.shields.io/github/contributors/gin0115/WPUnit_Helpers?label=Contributors)
+![GitHub issues](https://img.shields.io/github/issues-raw/gin0115/WPUnit_Helpers)
+
+
 ![alt text](https://img.shields.io/badge/Current_Version-1.0.7-yellow.svg?style=flat " ") 
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 ![](https://github.com/gin0115/WPUnit_Helpers/workflows/GitHub_CI/badge.svg " ")
